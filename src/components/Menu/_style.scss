@@ -1,3 +1,8 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-13 23:00:20
+ * @description: Menu组件样式
+ */
 .doga-menu {
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +56,7 @@
     }
   }
   .doga-submenu {
-    display: none;
+    // display: none;
     list-style:none;
     padding-left: 0;
     white-space: nowrap;
@@ -67,7 +72,7 @@
     }
   }
   .doga-submenu.menu-opened {
-    display: block;
+    // display: block;
   }
 }
 .menu-horizontal {

@@ -8,14 +8,26 @@ $brand: #fa2c19 !default; // 品牌色
 $brand-lightest: #ff404f !default; // 品牌渐变浅色
 
 /* 主题色 */
-$primary: #4779de !default; // 默认
+$primary: #3478f7 !default; // 默认
 $secondary: #5a607d !default; // 次要
-$success: #74d559 !default; // 成功
-$info: #68c1d6 !default; // 提示
-$warning: #e8c748 !default; // 警告
-$danger: #d34854 !default; // 危险
+$success: #5ac26d !default; // 成功
+$info: #50b4f7 !default; // 提示
+$warning: #f8d148 !default; // 警告
+$danger: #e0404a !default; // 危险
 $light: #e0e1e7 !default; // 浅色
 $dark: #3f4357 !default; // 深色
+
+$theme-colors: 
+(
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
 
 /* 辅助色 */
 $assist-flame: #ff5975 !default; // 火焰

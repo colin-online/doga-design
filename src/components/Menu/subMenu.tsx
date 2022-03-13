@@ -5,6 +5,8 @@
  */
 import classNames from 'classnames';
 import React, { FunctionComponentElement, useCallback, useContext, useState } from 'react';
+import Icon from '../Icon';
+import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 
@@ -29,6 +31,8 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
   /* 样式集合 */
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.index === index,
+    'is-opened': isOpen,
+    'is-vertical': context.mode === 'vertical',
   });
 
   /* 点击事件 */
@@ -78,13 +82,18 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
         console.error('Warning：SubMenu has a child which is not a MenuItem component.');
       }
     });
-    return <ul className={subMenuClass}>{childrenComponent}</ul>;
+    return (
+      <Transition in={isOpen} timeout={300} animation='zoom-in-top'>
+        <ul className={subMenuClass}>{childrenComponent}</ul>
+      </Transition>
+    );
   };
 
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className='submenu-title' {...clickEvents}>
         {title}
+        <Icon icon='angle-down' className='arrow-icon' />
       </div>
       {renderChildren()}
     </li>

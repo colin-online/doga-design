@@ -90,7 +90,7 @@ describe('test Menu and MenuItem component', () => {
   it('should show dropdown items when hover on subMenu', async () => {
     render(generateMenu(testProps)).container.append(createStyleFile());
     const dropDownItem = screen.queryByText('drop');
-    expect(dropDownItem).not.toBeVisible();
+    expect(dropDownItem).not.toBeInTheDocument();
     const dropdownElement = screen.getByText('dropdown');
     fireEvent.mouseEnter(dropdownElement);
     await waitFor(() => {
@@ -118,9 +118,9 @@ describe('test Menu and MenuItem component in vertical mode', () => {
   it('should show dropdown items when click on subMenu for vertical mode', () => {
     render(generateMenu(testVerticalProps)).container.append(createStyleFile());
     const dropDownItem = screen.queryByText('drop');
-    expect(dropDownItem).not.toBeVisible();
+    expect(dropDownItem).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('dropdown'));
-    expect(dropDownItem).toBeVisible();
+    expect(dropDownItem).not.toBeInTheDocument();
   });
 
   /* 当defaultOpenSubMenus包含子菜单索引时，应该显示子菜单下拉列表 */
