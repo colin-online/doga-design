@@ -4,7 +4,6 @@
  * @description: Button测试用例
  */
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 import Button, { ButtonProps } from './button';
 
 const defaultProps = {
@@ -22,30 +21,25 @@ const disabledProps: ButtonProps = {
   onClick: jest.fn(),
 };
 
+/* 测试按钮组件 */
 describe('test Button component', () => {
   /* 应该呈现正确的默认按钮 */
   it('should render the correct default button', () => {
     render(<Button {...defaultProps}>Default Button</Button>);
-    const element = screen.getByRole('button', { name: 'Default Button' }) as HTMLButtonElement;
-    expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('btn btn-default');
-    expect(element.disabled).toBeFalsy();
-    fireEvent(
-      element,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      }),
-    );
+    const buttonElement = screen.getByRole('button', { name: 'Default Button' }) as HTMLButtonElement;
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('doga-btn btn-default');
+    expect(buttonElement.disabled).toBeFalsy();
+    fireEvent.click(buttonElement);
     expect(defaultProps.onClick).toHaveBeenCalled();
   });
 
   /* 应该根据不同的属性呈现正确的组件 */
   it('should render the correct component based on different props', () => {
     render(<Button {...testProps}>Primary Button</Button>);
-    const element = screen.getByRole('button', { name: 'Primary Button' });
-    expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('btn btn-primary btn-lg colin');
+    const buttonElement = screen.getByRole('button', { name: 'Primary Button' });
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('doga-btn btn-primary btn-lg colin');
   });
 
   /* 当btnType等于link并且提供了href时，应该呈现一个链接 */
@@ -55,32 +49,20 @@ describe('test Button component', () => {
         Link Button
       </Button>,
     );
-    const element = screen.getByRole('link', { name: 'Link Button' });
-    expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('btn btn-link');
-    fireEvent(
-      element,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      }),
-    );
+    const buttonElement = screen.getByRole('link', { name: 'Link Button' });
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('doga-btn btn-link');
+    fireEvent.click(buttonElement);
     expect(defaultProps.onClick).toHaveBeenCalled();
   });
 
   /* 禁用时应将“渲染禁用”按钮设置为true */
   it('should render disabled button when disabled set to true', () => {
     render(<Button {...disabledProps}>Primary Button</Button>);
-    const element = screen.getByRole('button', { name: 'Primary Button' }) as HTMLButtonElement;
-    expect(element).toBeInTheDocument();
-    expect(element.disabled).toBeTruthy();
-    fireEvent(
-      element,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      }),
-    );
+    const buttonElement = screen.getByRole('button', { name: 'Primary Button' }) as HTMLButtonElement;
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement.disabled).toBeTruthy();
+    fireEvent.click(buttonElement);
     expect(defaultProps.onClick).not.toHaveBeenCalled();
   });
 });

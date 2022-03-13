@@ -25,7 +25,8 @@
     "start": "react-scripts start",
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
-    "test": "react-scripts test --watchAll=false"
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test --watchAll=true"
   },
   "dependencies": {
     "classnames": "^2.3.1"

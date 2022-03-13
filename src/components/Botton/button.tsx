@@ -28,7 +28,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>; /* But
 const Button: React.FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, href, children, ...restProps } = props || {};
   /* 样式集合 */
-  const classes = classNames('btn', className, {
+  const classes = classNames('doga-btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
     disabled: btnType === 'link' && disabled,
