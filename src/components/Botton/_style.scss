@@ -1,0 +1,106 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-13 02:10:29
+ * @description: Button样式
+ */
+
+/* 初始化 */
+.btn {
+  position: relative;
+  display: inline-block;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  color: $body-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: $btn-border-width solid transparent;
+  transition: $btn-transition;
+
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
+
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: $btn-disabled-opacity;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+}
+
+/* 上下内边距, 左右那边句, 字体大小, 边框圆角 */
+/* 大号 */
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+}
+
+/* 小号 */
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+}
+
+/* 背景颜色, 边框颜色, 字体颜色, 交互背景颜色, 交互边框颜色, 交互字体颜色 */
+/* 主要 */
+.btn-primary {
+  @include button-style($primary, $primary, $white);
+}
+
+/* 文本 */
+.btn-text {
+  @include button-style($white, $white, $black, $gray-200, $gray-200, $black);
+}
+
+/* 成功 */
+.btn-success {
+  @include button-style($success, $success, $white);
+}
+
+/* 警告 */
+.btn-warning {
+  @include button-style($warning, $warning, $white);
+}
+
+/* 信息 */
+.btn-info {
+  @include button-style($info, $info, $white);
+}
+
+/* 危险 */
+.btn-danger {
+  @include button-style($danger, $danger, $white);
+}
+
+/* 默认 */
+.btn-default {
+  @include button-style($white, $gray-300, $body-color, $white, $gray-500, $body-color);
+}
+
+/* 链接 */
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $btn-link-color;
+  text-decoration: $link-decoration;
+  box-shadow: none;
+
+  &:hover {
+    color: $btn-link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+}
