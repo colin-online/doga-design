@@ -437,6 +437,11 @@ input[type="datetime-local"],
 input[type="month"] {
   -webkit-appearance: textfield;
 }
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border: none;
+  outline: none;
+}
 
 // 1. Remove the default vertical scrollbar in IE.
 // 2. Textareas should really only resize vertically so they don't break their (horizontal) containers.

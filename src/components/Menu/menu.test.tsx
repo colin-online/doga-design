@@ -49,7 +49,7 @@ const createStyleFile = () => {
   return style;
 };
 
-/* 测试菜单和菜单项组件 */
+/* 测试Menu组件 */
 describe('test Menu and MenuItem component', () => {
   /* 应该根据默认道具呈现正确的菜单和菜单项 */
   it('should render correct Menu and MenuItem base on default props', () => {

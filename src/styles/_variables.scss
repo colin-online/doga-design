@@ -286,7 +286,7 @@ $input-border-radius-lg:                $border-radius-lg !default;
 $input-border-radius-sm:                $border-radius-sm !default;
 
 $input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              lighten($primary, 25%) !default;
+$input-focus-border-color:              $gray-600 !default;
 $input-focus-width:                     .2rem !default;
 $input-focus-color:                     $input-color !default;
 $input-focus-shadow-color:              rgba($primary, .25) !default;
@@ -301,7 +301,7 @@ $input-height-border:                   $input-border-width * 2 !default;
 $input-transition:                      border-color .3s ease-in-out, box-shadow .3s ease-in-out !default;
 
 $input-group-addon-color:               $input-color !default;
-$input-group-addon-bg:                  $gray-200 !default;
+$input-group-addon-bg:                  $gray-100 !default;
 $input-group-addon-border-color:        $input-border-color !default;
 
 // Progress bars

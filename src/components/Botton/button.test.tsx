@@ -21,7 +21,7 @@ const disabledProps: ButtonProps = {
   onClick: jest.fn(),
 };
 
-/* 测试按钮组件 */
+/* 测试Button组件 */
 describe('test Button component', () => {
   /* 应该呈现正确的默认按钮 */
   it('should render the correct default button', () => {
