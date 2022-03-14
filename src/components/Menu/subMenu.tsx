@@ -11,14 +11,14 @@ import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 
 /* Menu子菜单接口定义 */
-export interface subMenuProps {
+export interface SubMenuProps {
   index?: string;
   title?: string;
   className?: string;
 }
 
 /* Menu子菜单函数组件 */
-const SubMenu: FC<subMenuProps> = (props) => {
+const SubMenu: FC<SubMenuProps> = (props) => {
   const { index, title, className, children } = props || {};
   /* 获取上下文 */
   const context = useContext(MenuContext);

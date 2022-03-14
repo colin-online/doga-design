@@ -34,7 +34,7 @@ export const MenuContext = createContext<IMenuContext>({
 });
 
 /* Menu函数组件 */
-const Menu: FC<MenuProps> = (props) => {
+export const Menu: FC<MenuProps> = (props) => {
   const { defaultIndex, mode, className, style, onSelect, defaultOpenSubMenus, children } = props || {};
   const [currentActive, setCurrentActive] = useState(defaultIndex);
 

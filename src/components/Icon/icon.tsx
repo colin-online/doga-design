@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { FC } from 'react';
+
 library.add(fas);
 
 /* 主题属性类型定义 */
@@ -19,7 +20,7 @@ export interface IconProps extends FontAwesomeIconProps {
 }
 
 /* Icon函数组件 */
-const Icon: FC<IconProps> = (props) => {
+export const Icon: FC<IconProps> = (props) => {
   // icon-primary
   const { className, theme, ...restProps } = props;
   const classes = classNames('doga-icon', className, {

@@ -1,9 +1,9 @@
 {
   "name": "doga-design",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "description": "Doga Design React UI组件库",
   "author": "东林",
-  "description": "React UI组件库",
-  "homepage": "",
+  "homepage": "https://github.com/colin-online/doga-design",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,27 +14,31 @@
     "UI",
     "Components"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colin-online/doga-design"
+  },
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/colin-online/doga-design.git"
-  },
   "scripts": {
     "start": "react-scripts start",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "npm run clean && npm run build:ts && npm run build:css",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "clean": "rimraf ./dist",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "test": "react-scripts test --watchAll=false",
-    "test:watch": "react-scripts test --watchAll=true"
+    "test:watch": "react-scripts test --watchAll=true",
+    "test:nowatch": "cross-env CI=true react-scripts test"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
-    "axios": "^0.26.1",
+    "react-transition-group": "^4.4.2",
     "classnames": "^2.3.1",
-    "react-transition-group": "^4.4.2"
+    "axios": "^0.26.1"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
@@ -54,7 +58,9 @@
     "prettier": "^2.5.1",
     "husky": "^7.0.4",
     "node-sass": "^7.0.1",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "rimraf": "^3.0.2",
+    "cross-env": "^7.0.3"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

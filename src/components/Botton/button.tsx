@@ -25,7 +25,7 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>; /* Button属性类型定义 */
 
 /* Button函数组件 */
-const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, href, children, ...restProps } = props || {};
   /* 样式集合 */
   const classes = classNames('doga-btn', className, {

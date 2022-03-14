@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 23:52:04
- * @description: 动画样式
+ * @description: 动效组件样式
  */
 @include zoom-animation('top', scaleY(0), scaleY(1), center top);
 @include zoom-animation('left', scale(.45, .45), scale(1, 1), top left);
