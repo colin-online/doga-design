@@ -45,7 +45,7 @@ $assist-grey: #62698c !default; // 星空灰
 
 /* 灰阶 */
 $white: #ffffff !default; // 白色
-$gray-100: #f8f9fa !default; // 100
+$gray-100: #f6f7f9 !default; // 100
 $gray-200: #e9ecef !default; // 200
 $gray-300: #dee2e6 !default; // 300
 $gray-400: #ced4da !default; // 400
@@ -189,7 +189,7 @@ $enable-pointer-cursor-for-buttons:           true !default;
 // 边框 和 border radius
 
 $border-width:                1px !default;
-$border-color:                $gray-300 !default;
+$border-color:                $gray-200 !default;
 
 $border-radius:               .25rem !default;
 $border-radius-lg:            .3rem !default;
@@ -249,12 +249,13 @@ $menu-transition:              color .25s ease-in-out, border-color .25s ease-in
 $menu-item-padding-y:          .5rem !default;
 $menu-item-padding-x:          1rem !default;
 $menu-item-active-color:       $primary !default;
+$menu-item-active-background-color:       $gray-100 !default;
 $menu-item-active-border-width: 2px !default;
 $menu-item-disabled-color:     $gray-600 !default;
 
 //sub-menu
 //submenu
-$submenu-box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+$submenu-box-shadow: 0 2px 4px 0 rgba(0,0,0,.04), 0 0 6px 0 rgba(0,0,0,.02);
 
 //input
 $input-padding-y:                       $btn-padding-y !default;
@@ -273,7 +274,7 @@ $input-padding-x-lg:                    $btn-padding-x-lg !default;
 $input-font-size-lg:                    $btn-font-size-lg !default;
 
 $input-bg:                              $white !default;
-$input-disabled-bg:                     $gray-200 !default;
+$input-disabled-bg:                     $gray-100 !default;
 $input-disabled-border-color:           null !default;
 
 $input-color:                           $gray-700 !default;
@@ -286,7 +287,7 @@ $input-border-radius-lg:                $border-radius-lg !default;
 $input-border-radius-sm:                $border-radius-sm !default;
 
 $input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              $gray-600 !default;
+$input-focus-border-color:              $gray-500 !default;
 $input-focus-width:                     .2rem !default;
 $input-focus-color:                     $input-color !default;
 $input-focus-shadow-color:              rgba($primary, .25) !default;
