@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-14 13:12:19
- * @description: Input组件测试用例
+ * @description: 输入框组件测试用例
  */
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';

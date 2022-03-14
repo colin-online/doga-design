@@ -1,13 +1,13 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 23:01:16
- * @description: Icon函数组件
+ * @description: 图标函数组件
  */
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React from 'react';
+import React, { FC } from 'react';
 library.add(fas);
 
 /* 主题属性类型定义 */
@@ -19,7 +19,7 @@ export interface IconProps extends FontAwesomeIconProps {
 }
 
 /* Icon函数组件 */
-const Icon: React.FC<IconProps> = (props) => {
+const Icon: FC<IconProps> = (props) => {
   // icon-primary
   const { className, theme, ...restProps } = props;
   const classes = classNames('doga-icon', className, {

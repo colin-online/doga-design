@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-14 02:26:56
- * @description: Input函数组件
+ * @description: 输入框函数组件
  */
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import classNames from 'classnames';

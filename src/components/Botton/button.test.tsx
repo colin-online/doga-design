@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 13:14:12
- * @description: Button测试用例
+ * @description: 按钮组件测试用例
  */
 import { fireEvent, render, screen } from '@testing-library/react';
 import Button, { ButtonProps } from './button';

@@ -1,10 +1,10 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 16:05:02
- * @description: Menu函数组件
+ * @description: 菜单函数组件
  */
 import classNames from 'classnames';
-import React, { createContext, useCallback, useState } from 'react';
+import React, { Children, cloneElement, createContext, CSSProperties, FC, FunctionComponentElement, useCallback, useState } from 'react';
 import { MenuItemProps } from './menuItem';
 
 type MenuMode = 'horizontal' | 'vertical'; /* Menu模式类型定义 */
@@ -15,7 +15,7 @@ export interface MenuProps {
   defaultIndex?: string;
   mode?: MenuMode;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   onSelect?: SelectCallback;
   defaultOpenSubMenus?: string[];
 }
@@ -34,7 +34,7 @@ export const MenuContext = createContext<IMenuContext>({
 });
 
 /* Menu函数组件 */
-const Menu: React.FC<MenuProps> = (props) => {
+const Menu: FC<MenuProps> = (props) => {
   const { defaultIndex, mode, className, style, onSelect, defaultOpenSubMenus, children } = props || {};
   const [currentActive, setCurrentActive] = useState(defaultIndex);
 
@@ -65,11 +65,11 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   /* 处理Children */
   const renderChildren = () => {
-    return React.Children.map(children, (child, index) => {
-      const childElement = child as React.FunctionComponentElement<MenuItemProps>;
+    return Children.map(children, (child, index) => {
+      const childElement = child as FunctionComponentElement<MenuItemProps>;
       const { displayName } = childElement.type || {};
       if (displayName === 'MenuItem' || displayName === 'SubMenu') {
-        return React.cloneElement(childElement, {
+        return cloneElement(childElement, {
           index: index.toString(),
         });
       } else {

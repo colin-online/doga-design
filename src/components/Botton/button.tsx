@@ -1,10 +1,10 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 01:52:24
- * @description: Button函数组件
+ * @description: 按钮函数组件
  */
 import classNames from 'classnames';
-import React from 'react';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
 export type ButtonSize = 'lg' | 'sm'; // Button尺寸类型定义
 export type ButtonType = 'primary' | 'default' | 'success' | 'warning' | 'info' | 'danger' | 'text' | 'link'; // Button类别类型定义
@@ -16,16 +16,16 @@ interface BaseButtonProps {
   size?: ButtonSize;
   btnType?: ButtonType;
   href?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /* 原生Button属性接口类型 */
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>;
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>;
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>; /* Button属性类型定义 */
 
 /* Button函数组件 */
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, href, children, ...restProps } = props || {};
   /* 样式集合 */
   const classes = classNames('doga-btn', className, {

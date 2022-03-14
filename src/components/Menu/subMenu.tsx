@@ -1,10 +1,10 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 18:54:05
- * @description: Menu子菜单函数组件
+ * @description: 子菜单函数组件
  */
 import classNames from 'classnames';
-import React, { FunctionComponentElement, useCallback, useContext, useState } from 'react';
+import React, { Children, cloneElement, FC, FunctionComponentElement, MouseEvent, useCallback, useContext, useState } from 'react';
 import Icon from '../Icon';
 import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
@@ -18,7 +18,7 @@ export interface subMenuProps {
 }
 
 /* Menu子菜单函数组件 */
-const SubMenu: React.FC<subMenuProps> = (props) => {
+const SubMenu: FC<subMenuProps> = (props) => {
   const { index, title, className, children } = props || {};
   /* 获取上下文 */
   const context = useContext(MenuContext);
@@ -37,7 +37,7 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
 
   /* 点击事件 */
   const handleClick = useCallback(
-    (e: React.MouseEvent) => {
+    (e: MouseEvent) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     },
@@ -46,7 +46,7 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
 
   /* 滑过事件 */
   let timer: any;
-  const handleMouse = useCallback((e: React.MouseEvent, toggle: boolean) => {
+  const handleMouse = useCallback((e: MouseEvent, toggle: boolean) => {
     clearTimeout(timer);
     e.preventDefault();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,8 +62,8 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
   const hoverEvents =
     context.mode !== 'vertical'
       ? {
-          onMouseEnter: (e: React.MouseEvent) => handleMouse(e, true),
-          onMouseLeave: (e: React.MouseEvent) => handleMouse(e, false),
+          onMouseEnter: (e: MouseEvent) => handleMouse(e, true),
+          onMouseLeave: (e: MouseEvent) => handleMouse(e, false),
         }
       : {};
 
@@ -72,10 +72,10 @@ const SubMenu: React.FC<subMenuProps> = (props) => {
     const subMenuClass = classNames('doga-submenu', {
       'menu-opened': isOpen,
     });
-    const childrenComponent = React.Children.map(children, (child, i) => {
+    const childrenComponent = Children.map(children, (child, i) => {
       const childrenElement = child as FunctionComponentElement<MenuItemProps>;
       if (childrenElement.type.displayName === 'MenuItem') {
-        return React.cloneElement(childrenElement, {
+        return cloneElement(childrenElement, {
           index: `${index}-${i}`,
         });
       } else {

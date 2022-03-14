@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 17:28:24
- * @description: Menu组件测试用例
+ * @description: 菜单组件测试用例
  */
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Menu, { MenuProps } from './menu';

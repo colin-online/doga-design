@@ -7,6 +7,8 @@ import Input from './components/Input';
 import Menu from './components/Menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
+import Upload from './components/Upload';
+import { UploadFile } from './components/Upload/upload';
 import './styles/index.scss';
 interface GithubUserProps {
   login: string;
@@ -31,9 +33,40 @@ const handleFetch = (query: string) => {
     });
 };
 
+// const checkFileSize = (file: File) => {
+//   if (Math.round(file.size / 1024) > 50) {
+//     console.log('超过最大限制');
+//     return false;
+//   }
+//   console.log('刚刚好');
+//   return true;
+// };
+
+const filePromise = (file: File) => {
+  const newFile = new File([file], file.name, { type: file.type });
+  return Promise.resolve(newFile);
+};
+const defaultFileList: UploadFile[] = [
+  { uid: '123', size: 1234, name: 'hello.md', status: 'uploading', percent: 30 },
+  { uid: '122', size: 1234, name: 'xyz.md', status: 'success', percent: 30 },
+  { uid: '121', size: 1234, name: 'eyiha.md', status: 'error', percent: 30 },
+];
+
 ReactDOM.render(
   // <React.StrictMode>
   <div style={{ margin: '30px' }}>
+    <Upload
+      action='https://jsonplaceholder.typicode.com/posts'
+      defaultFileList={defaultFileList}
+      onProgress={(e) => console.log('onProgress', e)}
+      onSuccess={() => console.log('onSuccess')}
+      onError={() => console.log('onError')}
+      onChange={() => console.log('onChange')}
+      beforeUpload={(file) => filePromise(file)}
+      accept='.jpg'
+      multiple
+      drag
+    />
     <br />
     <br />
     <br />

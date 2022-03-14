@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-14 17:19:53
- * @description: AutoComplete组件测试用例
+ * @description: 自动填充组件测试用例
  */
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
