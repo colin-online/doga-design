@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
 /* 动效名称类型定义 */
-type AnimationName = 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-in-right';
+type AnimationName = 'zoom-in-center' | 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-in-right';
 
 /* 动效属性类型定义 */
 type TransitionProps = CSSTransitionProps & {
