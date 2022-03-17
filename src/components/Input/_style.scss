@@ -3,18 +3,39 @@
  * @Date: 2022-03-14 02:34:19
  * @description: 输入框组件样式
  */
+/* 输入框 */
 .doga-input {
   display: flex;
   width: 100%;
-  margin-bottom: 30px;
+  height: 100%;
   position: relative;
-  .icon-wrapper {
+  outline: 0;
+  border: $input-border-width solid $gray-300;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+
+  &.is-prepend-icon > input {
+    padding-left: 50px;
+  }
+
+  &.is-append-icon > input {
+    padding-right: 50px;
+  }
+
+  /* 滑过样式 */
+  &:hover {
+    border: $input-border-width solid $gray-400;
+  }
+
+  /* 图标公共样式 */
+  .prepend-icon-wrapper,
+  .append-icon-wrapper {
     position: absolute;
     height: 100%;
     width: 50px;
     justify-content: center;
     color: $input-color;
-    right: 0;
     top: 0;
     display: flex;
     align-items: center;
@@ -22,95 +43,270 @@
     svg {
       color: $input-placeholder-color;
     }
+    &:hover {
+      svg {
+        color: lighten($input-placeholder-color, 10%);
+      }
+    }
+  }
+
+  /* 前置图标 */
+  .prepend-icon-wrapper {
+    left: 0;
+  }
+
+  /* 后置图标 */
+  .append-icon-wrapper {
+    right: 0;
+  }
+
+  /* 文本框-正常 */
+  .doga-input-inner {
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 100%;
+    line-height: 20px;
+    color: $black;
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: initial;
+
+    &:focus {
+      cursor: text;
+      outline: 0;
+      border-color: $input-focus-border-color;
+    }
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      color: $gray-500;
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border-color;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+
+  /* 前后缀公共样式 */
+  .doga-input-group-prepend,
+  .doga-input-group-append {
+    display: flex;
+    align-items: center;
+    padding: $input-padding-y $input-padding-x;
+    margin-bottom: 0;
+    font-size: $input-font-size;
+    font-weight: $font-weight-normal;
+    line-height: $input-line-height;
+    color: $input-group-addon-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $input-group-addon-bg;
+    border-radius: $input-border-radius;
+  }
+
+  /* 前缀 */
+  .doga-input-group-prepend {
+    border-right: $input-border-width solid $input-group-addon-border-color;
+  }
+
+  /* 后缀 */
+  .doga-input-group-append {
+    border-left: $input-border-width solid $input-group-addon-border-color;
+  }
+
+  .doga-input-group-append + .btn {
+    padding: 0;
+    border: 0;
+  }
+
+  .input-group > .doga-input-group-prepend,
+  .input-group.input-group-append > .doga-input-inner {
+    @include border-right-radius(0);
+  }
+
+  .input-group > .doga-input-group-append,
+  .input-group.input-group-prepend > .doga-input-inner {
+    @include border-left-radius(0);
+  }
+
+  /* 文本框-小 */
+  .input-size-sm .doga-input-inner {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+    font-size: $input-font-size-sm;
+    border-radius: $input-border-radius-sm;
+  }
+
+  /* 文本框-大 */
+  .input-size-lg .doga-input-inner {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $input-font-size-lg;
+    border-radius: $input-border-radius-lg;
   }
 }
-.icon-wrapper+.doga-input-inner {
-  padding-right: 50px;
-}
-.doga-input-inner {
-  width: 100%;
-  padding: $input-padding-y $input-padding-x;
-  font-family: $input-font-family;
-  font-size: $input-font-size;
-  font-weight: $input-font-weight;
-  line-height: $input-line-height;
-  color: $input-color;
-  background-color: $input-bg;
-  background-clip: padding-box;
-  border: $input-border-width solid $input-border-color;
 
-  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
-  border-radius: $input-border-radius;
-
-  box-shadow: $input-box-shadow;
-  transition: $input-transition;
-
-  &:focus {
-    color: $input-focus-color;
-    background-color: $input-focus-bg;
-    border-color: $input-focus-border-color;
-    outline: 0;
-    // Avoid using mixin so we can pass custom focus shadow properly
-  }
-  &::placeholder {
-    color: $input-placeholder-color;
-    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
-    opacity: 1;
-  }
-  &:disabled,
-  &[readonly] {
-    background-color: $input-disabled-bg;
-    border-color: $input-disabled-border-color;
-    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
-    opacity: 1;
-    cursor: not-allowed;
-  }
-}
-.doga-input-group-prepend,
-.doga-input-group-append {
+/* 文本域 */
+.doga-textarea {
   display: flex;
-  align-items: center;
-  padding: $input-padding-y $input-padding-x;
-  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
-  font-size: $input-font-size; // Match inputs
-  font-weight: $font-weight-normal;
-  line-height: $input-line-height;
-  color: $input-group-addon-color;
-  text-align: center;
-  white-space: nowrap;
-  background-color: $input-group-addon-bg;
-  border-radius: $input-border-radius;
-  border-top: $input-border-width solid $input-group-addon-border-color;
-  border-bottom: $input-border-width solid $input-group-addon-border-color;
-}
-.doga-input-group-prepend{
-  border-left: $input-border-width solid $input-group-addon-border-color;
-}
-.doga-input-group-append{
-  border-right: $input-border-width solid $input-group-addon-border-color;
-}
-.doga-input-group-append + .btn {
-  padding: 0;
-  border: 0;
-}
-.input-group > .doga-input-group-prepend,
-.input-group.input-group-append > .doga-input-inner {
-  @include border-right-radius(0);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  outline: 0;
+  border: $input-border-width solid $gray-300;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+  resize : none;
+
+  /* 滑过样式 */
+  &:hover {
+    border: $input-border-width solid $gray-400;
+  }
+
+  /* 文本域内容 */
+  .doga-textarea-inner {
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 100%;
+    line-height: 20px;
+    color: $black;
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: initial;
+
+    &:focus {
+      cursor: text;
+      outline: 0;
+      border-color: $input-focus-border-color;
+    }
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      color: $gray-500;
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border-color;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+
+  /* 字数 */
+  .doga-textarea-count{
+    font-size: 14px;
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    color: $gray-500;
+  }
 }
 
-.input-group > .doga-input-group-append,
-.input-group.input-group-prepend > .doga-input-inner {
-  @include border-left-radius(0);
-}
+/* 数字框 */
+.doga-number {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  outline: 0;
+  border: $input-border-width solid $gray-300;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
 
-.input-size-sm .doga-input-inner {
-  padding: $input-padding-y-sm $input-padding-x-sm;
-  font-size: $input-font-size-sm;
-  border-radius: $input-border-radius-sm;
-}
+  /* 滑过样式 */
+  &:hover {
+    border: $input-border-width solid $gray-400;
+  }
 
-.input-size-lg .doga-input-inner {
-  padding: $input-padding-y-lg $input-padding-x-lg;
-  font-size: $input-font-size-lg;
-  border-radius: $input-border-radius-lg;
+  /* 数字框内容 */
+  .doga-number-inner {
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 100%;
+    line-height: 20px;
+    color: $black;
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: initial;
+
+    &:focus {
+      cursor: text;
+      outline: 0;
+      border-color: $input-focus-border-color;
+    }
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      color: $gray-500;
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border-color;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+
+  /* 数字框操作项 */
+  .doga-number-step{
+    display: flex;
+    flex-direction: column;
+
+    &.is-disabled {
+      pointer-events: none;
+      cursor: not-allowed;
+      > span{
+        color: #adb5bd
+      };
+    }
+
+    /* 增加减少 */
+    > span {
+      box-sizing: border-box;
+      position: absolute;
+      width: 30px;
+      height: 20px;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid #e0e5ea;
+      color: #444950;
+      cursor: pointer;
+      color: $black;
+    }
+    /* 增加 */
+    .doga-number-step-increase {
+      top: 0;
+      border-bottom: 1px solid #e0e5ea;
+    }
+
+    /* 减少 */
+    .doga-number-step-decrease {
+      bottom: 0;
+    }
+  }
 }

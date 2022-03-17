@@ -1,0 +1,22 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-14 18:16:32
+ * @description: 云上传组件样式
+ */
+.doga-cloud-upload-dragger {
+  background: $gray-100;
+  border: 1px dashed $gray-300;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 20px;
+  width: 360px;
+  height: 180px;
+  text-align: center;
+  &:hover {
+    border: 1px dashed $primary;
+  }
+  &.is-dragover {
+    border: 1px dashed $primary;
+    background: rgba($primary, .2);
+  }
+}

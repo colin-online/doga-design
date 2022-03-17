@@ -14,9 +14,11 @@ type InputSize = 'sm' | 'lg';
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
   /* 设置Input大小 */
   size?: InputSize;
-  /* 添加图标 */
-  icon?: IconProp;
-  /* 是否禁用Input */
+  /* 前置图标 */
+  prependIcon?: IconProp;
+  /* 后置图标 */
+  appendIcon?: IconProp;
+  /* 是否禁用 */
   disabled?: boolean;
   /* 添加前缀 */
   prepend?: string | ReactElement;
@@ -28,11 +30,12 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
 
 /* Input函数组件 */
 export const Input: FC<InputProps> = (props) => {
-  const { size, icon, disabled, prepend, append, style, ...restProps } = props || {};
+  const { size, appendIcon, prependIcon, disabled, prepend, append, style, ...restProps } = props || {};
   /* 样式集合 */
   const classes = classNames('doga-input', {
     [`input-size-${size}`]: size,
-    'is-disabled': disabled,
+    'is-prepend-icon': !!prependIcon && !prepend,
+    'is-append-icon': !!appendIcon && !append,
     'input-group': prepend || append,
     'input-group-append': !!append,
     'input-group-prepend': !!prepend,
@@ -52,14 +55,24 @@ export const Input: FC<InputProps> = (props) => {
 
   return (
     <div className={classes} style={style} data-testid='test-input'>
+      {/* 前缀 */}
       {prepend && <div className='doga-input-group-prepend'>{prepend}</div>}
-      {icon && !append && (
-        <div className='icon-wrapper'>
-          <Icon icon={icon} title={`title-${icon}`} />
+      {/* 前置Icon */}
+      {prependIcon && !prepend && (
+        <div className='prepend-icon-wrapper'>
+          <Icon icon={prependIcon} title={`title-${prependIcon}`} />
         </div>
       )}
-      <input className='doga-input-inner' disabled={disabled} {...restProps} />
+      {/* 文本框 */}
+      <input {...restProps} className='doga-input-inner' disabled={disabled} />
+      {/* 后缀 */}
       {append && <div className='doga-input-group-append'>{append}</div>}
+      {/* 后置Icon */}
+      {appendIcon && !append && (
+        <div className='append-icon-wrapper'>
+          <Icon icon={appendIcon} title={`title-${appendIcon}`} />
+        </div>
+      )}
     </div>
   );
 };
