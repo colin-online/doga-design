@@ -21,6 +21,11 @@
 
   @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
 
+
+  &.block{
+    width: 100%;
+  }
+
   &.disabled,
   &[disabled] {
     cursor: not-allowed;

@@ -434,13 +434,21 @@ button,
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
-input[type="month"] {
+input[type="month"],
+input[type="number"],
+input[type="range"] {
   -webkit-appearance: textfield;
 }
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="number"]:focus, {
   border: none;
   outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
 }
 
 // 1. Remove the default vertical scrollbar in IE.

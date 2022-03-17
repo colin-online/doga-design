@@ -6,11 +6,11 @@
 import React, { FC } from 'react';
 import Icon from '../Icon/icon';
 import Progress from '../Progress/progress';
-import { UploadFile } from './upload';
+import { UploadFileProps } from './upload';
 
 interface UploadListProps {
-  fileList: UploadFile[];
-  onRemove: (_file: UploadFile) => void;
+  fileList: UploadFileProps[];
+  onRemove: (_file: UploadFileProps) => void;
 }
 
 /* UploadList函数组件 */

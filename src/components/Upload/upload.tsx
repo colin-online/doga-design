@@ -12,7 +12,7 @@ import UploadList from './uploadList';
 /* 上传文件状态 */
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
 /* 上传文件接口定义 */
-export interface UploadFile {
+export interface UploadFileProps {
   uid: string /* 唯一标识 */;
   size: number /* 大小 */;
   name: string /* 名称 */;
@@ -33,7 +33,7 @@ export interface UploadProps {
   name?: string;
   /* 扩展数据 */
   data?: { [key: string]: any };
-  /* 凭证 */
+  /* 是否携带cookie */
   withCredentials?: boolean;
   /* 支持格式 */
   accept?: string;
@@ -42,7 +42,9 @@ export interface UploadProps {
   /* 拖拽 */
   drag?: boolean;
   /* 默认文件列表 */
-  defaultFileList?: UploadFile[];
+  defaultFileList?: UploadFileProps[];
+  /* 是否显示上传列表 */
+  isShowList?: boolean;
   /* 前置校验 */
   beforeUpload?: (file: File) => boolean | Promise<File>;
   /* 上传进度 */
@@ -54,19 +56,19 @@ export interface UploadProps {
   /* 更新操作 */
   onChange?: (file: File) => void;
   /* 删除操作 */
-  onRemove?: (file: UploadFile) => void;
+  onRemove?: (file: UploadFileProps) => void;
 }
 
 /* Upload函数组件 */
 export const Upload: FC<UploadProps> = (props) => {
-  const { name, data, headers, withCredentials, accept, multiple, drag, action, defaultFileList, beforeUpload, onProgress, onSuccess, onError, onChange, onRemove, children } = props || {};
+  const { name, data, headers, withCredentials, accept, multiple, drag, action, defaultFileList, isShowList, beforeUpload, onProgress, onSuccess, onError, onChange, onRemove, children } = props || {};
   /* 文件上传控件 */
   const fileInputRef = useRef<HTMLInputElement>(null);
   /* 文件列表 */
-  const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
+  const [fileList, setFileList] = useState<UploadFileProps[]>(defaultFileList || []);
 
   /* 执行更新列表操作 */
-  const updateFileList = useCallback((updateFile: UploadFile, updateObject: Partial<UploadFile>) => {
+  const updateFileList = useCallback((updateFile: UploadFileProps, updateObject: Partial<UploadFileProps>) => {
     setFileList((prevList) => {
       return prevList.map((file) => {
         if (file.uid === updateFile.uid) {
@@ -81,7 +83,7 @@ export const Upload: FC<UploadProps> = (props) => {
   /* 上传文件逻辑 */
   const onPostFile = useCallback(
     (file: File) => {
-      let _file: UploadFile = {
+      let _file: UploadFileProps = {
         uid: `doga_upload_file_${Date.now()}`,
         status: 'ready',
         name: file.name,
@@ -178,7 +180,7 @@ export const Upload: FC<UploadProps> = (props) => {
 
   /* 执行删除文件操作 */
   const handleRemove = useCallback(
-    (file: UploadFile) => {
+    (file: UploadFileProps) => {
       setFileList((prevList) => {
         return prevList.filter((item) => item.uid !== file.uid);
       });
@@ -207,7 +209,7 @@ export const Upload: FC<UploadProps> = (props) => {
 
   return (
     <div className='doga-upload'>
-      <div className='doga-upload-input' style={{ display: 'inline-block' }} onClick={handleClick}>
+      <div className='doga-upload-input' onClick={handleClick}>
         {drag ? (
           <Dragger
             onFile={(files) => {
@@ -230,7 +232,8 @@ export const Upload: FC<UploadProps> = (props) => {
         <input className='doga-file-input' style={{ display: 'none' }} type='file' ref={fileInputRef} accept={accept} multiple={multiple} onChange={handleFileChange} />
       </div>
 
-      <UploadList fileList={fileList} onRemove={handleRemove} />
+      {/* 上传列表 */}
+      {isShowList && <UploadList fileList={fileList} onRemove={handleRemove} />}
     </div>
   );
 };

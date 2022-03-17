@@ -1,0 +1,119 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-16 17:29:08
+ * @description: 图片组件样式
+ */
+.doga-image{
+  /* 显示图片 */
+  .doga-image-picture {
+    width: 100%;
+    height: 200px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: $gray-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    position: relative;
+    img {
+      overflow: hidden;
+      width: auto;
+      height: 100%;
+    }
+  }
+  /* 功能组 */
+  .doga-image-handle{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  /* 占位空格 */
+  .doga-cropper-space{
+    width: 20px;
+  }
+}
+
+/* 裁剪组件样式 */
+.doga-cropper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  /* 图片 */
+  .doga-cropper-picture{
+    display: block;
+    max-width: 100%;
+  }
+
+  /* 上锁 */
+  .doga-cropper-picture-handle-lock{
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    &:hover{
+      color: rgba(0,0,0,0.8);
+    }
+  }
+
+  .doga-cropper-picture-handle{
+    display: flex;
+    margin-bottom: 20px;
+
+    .doga-cropper-picture-handle-icon{
+      min-width: 30px;
+      height: 30px;
+      line-height: 30px;
+      margin-right: 20px;
+      color: $gray-700;
+      background-color: $gray-100;
+      text-align: center;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        .doga-cropper-picture-handle-tip{
+          transition: all 0.5s;
+          display: block;
+          height: 60px;
+          opacity: 1;
+        }
+      }
+      .doga-cropper-picture-handle-tip{
+        opacity: 0;
+        height: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        font-size: 12px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.8);
+        border-radius: 30px;
+      }
+    }
+    & > div:last-child{
+      margin-right: 0;
+    }
+  }
+
+  .cropper-point{
+    background-color: #fff;
+    border-radius: 50%;
+    transform: scale(1.5);
+  }
+}
+.doga-cropper-handle{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  & > button:last-child {
+   margin-left: 10px;
+  }
+}

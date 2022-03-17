@@ -180,7 +180,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   return (
     <div className='doga-auto-complete' ref={componentRef}>
-      <Input icon='caret-down' value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handlekeyDown} />
+      <Input appendIcon='caret-down' value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handlekeyDown} />
       {generateDropdown()}
     </div>
   );

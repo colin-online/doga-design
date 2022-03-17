@@ -1,0 +1,55 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-16 21:32:33
+ * @description: 弹出框组件
+ */
+.doga-popup {
+  position: fixed;
+  overflow: auto;
+  inset: 0;
+  outline: 0;
+  margin: auto;
+  z-index: 10000;
+  .doga-popup-wrapper {
+    box-sizing: border-box;
+    padding: 24px 0;
+    font-size: 14px;
+    position: relative;
+    top: 100px;
+    width: auto;
+    max-width: calc(100vw - 200px);
+    margin: 0 auto;
+    background-color: $white;
+    z-index: 100;
+    border-radius: 3px;
+    .doga-popup-title{
+      box-sizing: border-box;
+      font-size: 16px;
+      border-bottom: 1px solid $gray-200;
+      padding: 0 24px 10px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .doga-popup-close{
+        color: $gray-500;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    .doga-popup-content {
+      height: '100%';
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+  }
+  .doga-popup-modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+}

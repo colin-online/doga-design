@@ -1,0 +1,61 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-03-16 14:59:48
+ * @description: Slider组件样式
+ */
+.doga-slider{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* 滑动条 */
+  .doga-slider-inner{
+    width: 100%;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    height: 4px;
+    border-radius: 3px;
+    background-color: transparent;
+    transition: background .15;
+    cursor: pointer;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      background: #ffffff; 
+      border-radius: 50%;
+      border: solid 1px $gray-500;
+    }
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      color: $gray-500;
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border-color;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+  /* 计数 */
+  .doga-slider-count{
+    width: 50px;
+    text-align: right;
+    font-size: 16px;
+    color: $gray-500;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    small{
+      font-size: 14px;
+      margin-left: 1px;
+    }
+  }
+}
