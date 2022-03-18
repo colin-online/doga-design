@@ -1,5 +1,5 @@
 <p align="center">
- <img width="200" style="border-radius: 50%;" src="https://colin-online-1309714699.cos.ap-shanghai.myqcloud.com/static-file/doga.png">
+ <img src="https://colin-online-1309714699.cos.ap-shanghai.myqcloud.com/static-file/doga.png" width="200" style="border-radius: 50%;">
 </p>
 
 <h1 align="center">Doga Design，世界非你所见！</h1>
