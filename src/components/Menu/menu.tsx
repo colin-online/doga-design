@@ -79,7 +79,7 @@ export const Menu: FC<MenuProps> = (props) => {
   };
 
   return (
-    <ul className={classes} style={style} data-testid='test-menu'>
+    <ul className={classes} style={style}>
       <MenuContext.Provider value={passedContext}>{renderChildren()}</MenuContext.Provider>
     </ul>
   );

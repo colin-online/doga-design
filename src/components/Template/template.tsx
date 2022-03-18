@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 export interface TemplateProps {}
 
 export const Template: FC<TemplateProps> = (props) => {
-  const {} = props || {};
+  // const {} = props || {};
   /* 组件样式 */
   const classes = classNames('doga-template', {});
 

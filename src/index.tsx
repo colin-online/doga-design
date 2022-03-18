@@ -3,11 +3,6 @@
  * @Date: 2022-03-14 23:18:45
  * @description: doga design组件库入口文件
  */
-/* 测试 */
-// import ReactDOM from 'react-dom';
-// import App from './App';
-// const rootElement = document.getElementById('root');
-// ReactDOM.render(<App />, rootElement);
 
 export { default as AutoComplete } from './components/AutoComplete';
 /* 按钮组件 */

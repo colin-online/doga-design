@@ -72,8 +72,9 @@
     padding: 10px 16px;
     outline: none;
     box-shadow: none;
-    cursor: pointer;
     font-family: initial;
+    cursor: pointer;
+    caret-color: $gray-600;
 
     &:focus {
       cursor: text;

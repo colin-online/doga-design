@@ -5,7 +5,7 @@
  */
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import classNames from 'classnames';
-import React, { ChangeEvent, FC, InputHTMLAttributes, ReactElement } from 'react';
+import React, { ChangeEvent, FC, InputHTMLAttributes, ReactElement, useEffect, useRef } from 'react';
 import Icon from '../Icon/icon';
 
 /* Input组件类型定义 */
@@ -24,13 +24,17 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
   prepend?: string | ReactElement;
   /* 添加后缀 */
   append?: string | ReactElement;
+  /* 是否选中状态 */
+  focus?: boolean;
   /* 更新事件 */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 /* Input函数组件 */
 export const Input: FC<InputProps> = (props) => {
-  const { size, appendIcon, prependIcon, disabled, prepend, append, style, ...restProps } = props || {};
+  const { size, appendIcon, prependIcon, disabled, prepend, append, focus, style, ...restProps } = props || {};
+  /* 输入框 */
+  const inputRef = useRef<null | HTMLInputElement>(null);
   /* 样式集合 */
   const classes = classNames('doga-input', {
     [`input-size-${size}`]: size,
@@ -53,8 +57,15 @@ export const Input: FC<InputProps> = (props) => {
     restProps.value = fixControlledValue(props.value);
   }
 
+  /* 设置光标选中 */
+  useEffect(() => {
+    if (focus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  });
+
   return (
-    <div className={classes} style={style} data-testid='test-input'>
+    <div className={classes} style={style}>
       {/* 前缀 */}
       {prepend && <div className='doga-input-group-prepend'>{prepend}</div>}
       {/* 前置Icon */}
@@ -64,7 +75,7 @@ export const Input: FC<InputProps> = (props) => {
         </div>
       )}
       {/* 文本框 */}
-      <input {...restProps} className='doga-input-inner' disabled={disabled} />
+      <input {...restProps} className='doga-input-inner' ref={inputRef} disabled={disabled} />
       {/* 后缀 */}
       {append && <div className='doga-input-group-append'>{append}</div>}
       {/* 后置Icon */}

@@ -20,8 +20,12 @@ export interface ImageProps {
   isReplace?: boolean;
   /* 是否可裁剪 */
   isCropper?: boolean;
+  /* 是否可调色 */
+  isTint?: boolean;
   /* 是否可还原 */
   isRestore?: boolean;
+  /* 是否可删除 */
+  isRemove?: boolean;
   /* 更新操作 */
   onChange?: (data: any) => void;
 }
@@ -29,7 +33,7 @@ export interface ImageProps {
 /* Image函数组件 */
 export const Image: FC<ImageProps> = (props) => {
   /* 属性 */
-  const { src, cloud, isReplace, isRestore, isCropper, onChange } = props || {};
+  const { src, cloud, isReplace, isCropper, isTint, isRestore, isRemove, onChange } = props || {};
   /* 显示图片 */
   const [picture, setPicture] = useState<any>(src);
   /* 裁剪图片 */
@@ -44,12 +48,18 @@ export const Image: FC<ImageProps> = (props) => {
   const classes = classNames('doga-image', {});
 
   /* 上传成功 */
-  const handleUploadSuccessClick = useCallback((data: any) => {
-    if (data) {
-      setPicture(data);
-      setCropperPicture(data);
-    }
-  }, []);
+  const handleUploadSuccessClick = useCallback(
+    (data: any) => {
+      if (data) {
+        setPicture(data);
+        setCropperPicture(data);
+        if (onChange) {
+          onChange(data);
+        }
+      }
+    },
+    [onChange],
+  );
 
   /* 执行显示裁剪面板操作 */
   const handleCropperChange = useCallback(() => setIsShowCropper(!isShowCropper), [isShowCropper]);
@@ -74,6 +84,15 @@ export const Image: FC<ImageProps> = (props) => {
     }
   }, [picture, onChange]);
 
+  /* 执行照片删除操作 */
+  const handleRemoveClick = useCallback(() => {
+    setPicture('');
+    setCropperPicture('');
+    if (onChange) {
+      onChange('');
+    }
+  }, [onChange]);
+
   return (
     <div className={classes}>
       {/* 图片 */}
@@ -85,7 +104,7 @@ export const Image: FC<ImageProps> = (props) => {
       {/* 更换功能 */}
       {isReplace && cloud && (
         <CloudUpload cloud={cloud} onChange={(data) => handleUploadSuccessClick(data)} accept='image/*'>
-          <Botton block>更换图片</Botton>
+          <Botton block>{picture ? '更换' : '上传'}图片</Botton>
         </CloudUpload>
       )}
       {/* 功能组 */}
@@ -107,11 +126,23 @@ export const Image: FC<ImageProps> = (props) => {
             </Botton>
           </>
         )}
-        {isCropper && isRestore && <span className='doga-cropper-space' />}
+        {isCropper && isTint && <span className='doga-cropper-space' />}
+        {/* 调色功能 */}
+        {isTint && <Botton block>调色</Botton>}
+      </div>
+      {/* 功能组 */}
+      <div className='doga-image-handle'>
         {/* 还原功能 */}
         {isRestore && (
           <Botton block onClick={() => handleRestoreClick()}>
             还原
+          </Botton>
+        )}
+        {isRestore && isRemove && <span className='doga-cropper-space' />}
+        {/* 删除功能 */}
+        {isRemove && (
+          <Botton block onClick={() => handleRemoveClick()}>
+            删除
           </Botton>
         )}
       </div>
