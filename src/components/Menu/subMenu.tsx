@@ -5,7 +5,6 @@
  */
 import classNames from 'classnames';
 import React, { Children, cloneElement, FC, FunctionComponentElement, MouseEvent, useCallback, useContext, useState } from 'react';
-import Icon from '../Icon';
 import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
@@ -93,7 +92,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
     <li key={index} className={classes} {...hoverEvents}>
       <div className='submenu-title' {...clickEvents}>
         {title}
-        <Icon icon='angle-down' className='arrow-icon' />
+        <i className='arrow-icon iconfont icon-down' />
       </div>
       {renderChildren()}
     </li>

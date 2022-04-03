@@ -101,7 +101,7 @@ const App = () => (
     <Input value='东林' />
     <Input disabled />
     <Input size='lg' />
-    <Input icon='search' />
+    <Input prependIcon={<SearchIcon />} appendIcon={<ClearIcon />} />
     <Input prepend='http://' append='.com' />
     <Input.TextArea />
     <Input.Number />
@@ -113,7 +113,7 @@ const App = () => (
 
 | 属性     | 说明                 |              类型               | 默认值 |
 | :------- | :------------------- | :-----------------------------: | :----: |
-| icon     | 设置输入框的图标组件 |             string              |   -    |
+| icon     | 设置输入框的图标组件 |             *              |   -    |
 | size     | 设置按钮大小         | <code>lg</code> <code>sm</code> |   -    |
 | prepend  | 设置前置标签         |             string              |   -    |
 | append   | 设置后置标签         |             string              |   -    |
@@ -211,11 +211,13 @@ const App = () => (
     <Image
       title='标题'
       cloud={
-        Bucket: 'xxxxxx',
-        Region: 'xxxxxx',
-        SecretId: 'xxxxxx',
-        SecretKey: 'xxxxxx',
-        folderName: 'xxxxxx',
+       {
+          Bucket: 'xxxxxx',
+          Region: 'xxxxxx',
+          SecretId: 'xxxxxx',
+          SecretKey: 'xxxxxx',
+          folderName: 'xxxxxx',
+       }
       }
       isReplace
       isCropper
@@ -251,12 +253,19 @@ const App = () => (
   <>
     <CloudUpload
       cloud= {
-        Bucket: 'xxxxxx',
-        Region: 'xxxxxx',
-        SecretId: 'xxxxxx',
-        SecretKey: 'xxxxxx',
-        folderName: 'xxxxxx',
+        {
+          Bucket: 'xxxxxx',
+          Region: 'xxxxxx',
+          SecretId: 'xxxxxx',
+          SecretKey: 'xxxxxx',
+          folderName: 'xxxxxx',
+        }
       },
+      onProgress={e => console.log(e)}
+      onError={e => console.log(e)}
+      onChange={e => console.log(e)}
+      accept='image/*'
+      drag
     />
   </>
 );
@@ -327,7 +336,7 @@ const App = () => (
 #### Upload 上传(手动/拖拽)
 
 ```jsx
-import { Menu } from 'doga-design';
+import { Upload } from 'doga-design';
 
 const App = () => (
   <>

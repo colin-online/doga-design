@@ -3,10 +3,8 @@
  * @Date: 2022-03-14 02:26:56
  * @description: 输入框函数组件
  */
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import classNames from 'classnames';
 import React, { ChangeEvent, FC, InputHTMLAttributes, ReactElement, useEffect, useRef } from 'react';
-import Icon from '../Icon/icon';
 
 /* Input组件类型定义 */
 type InputSize = 'sm' | 'lg';
@@ -15,9 +13,9 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
   /* 设置Input大小 */
   size?: InputSize;
   /* 前置图标 */
-  prependIcon?: IconProp;
+  prependIcon?: any;
   /* 后置图标 */
-  appendIcon?: IconProp;
+  appendIcon?: any;
   /* 是否禁用 */
   disabled?: boolean;
   /* 添加前缀 */
@@ -71,7 +69,7 @@ export const Input: FC<InputProps> = (props) => {
       {/* 前置Icon */}
       {prependIcon && !prepend && (
         <div className='prepend-icon-wrapper'>
-          <Icon icon={prependIcon} title={`title-${prependIcon}`} />
+          {prependIcon}
         </div>
       )}
       {/* 文本框 */}
@@ -81,7 +79,7 @@ export const Input: FC<InputProps> = (props) => {
       {/* 后置Icon */}
       {appendIcon && !append && (
         <div className='append-icon-wrapper'>
-          <Icon icon={appendIcon} title={`title-${appendIcon}`} />
+          {appendIcon}
         </div>
       )}
     </div>

@@ -8,7 +8,6 @@ import Crop from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import React, { FC, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { cloudUploadFile } from '../../utils';
-import Icon from '../Icon';
 
 /* OSS对象存储参数接口定义 */
 export type CloudProps = {
@@ -170,27 +169,27 @@ export const Cropper: FC<CropperProps> = (props) => {
         {/* 还原 */}
         <div className='doga-cropper-picture-handle-icon' onClick={() => handleRestoreClick()}>
           <div className='doga-cropper-picture-handle-tip'>还原图片</div>
-          <Icon icon='repeat' />
+          <i className='iconfont icon-recover' />
         </div>
         {/* 水平翻转 */}
         <div className='doga-cropper-picture-handle-icon' onClick={() => handleFlipClick(true)}>
           <div className='doga-cropper-picture-handle-tip'>水平翻转</div>
-          <Icon icon='arrows-left-right' />
+          <i className='iconfont icon-horizontal' />
         </div>
         {/* 垂直翻转 */}
         <div className='doga-cropper-picture-handle-icon' onClick={() => handleFlipClick(false)}>
           <div className='doga-cropper-picture-handle-tip'>垂直翻转</div>
-          <Icon icon='arrows-up-down' />
+          <i className='iconfont icon-vertical' />
         </div>
         {/* 左旋 */}
         <div className='doga-cropper-picture-handle-icon' onClick={() => handleRotateClick(true)}>
           <div className='doga-cropper-picture-handle-tip'>向左旋转</div>
-          <Icon icon='arrow-rotate-left' />
+          <i className='iconfont icon-rotate-left' />
         </div>
         {/* 右旋 */}
         <div className='doga-cropper-picture-handle-icon' onClick={() => handleRotateClick(false)}>
           <div className='doga-cropper-picture-handle-tip'>向右旋转</div>
-          <Icon icon='arrow-rotate-right' />
+          <i className='iconfont icon-rotate-right' />
         </div>
       </div>
       {/* 图片 */}
@@ -198,8 +197,8 @@ export const Cropper: FC<CropperProps> = (props) => {
 
       {/* 开启/关闭锁 */}
       <div className='doga-cropper-picture-handle-lock' onClick={() => handleLockClick(lock)}>
-        {lock && <Icon icon='lock' />}
-        {!lock && <Icon icon='lock-open' />}
+        {lock && <i className='iconfont icon-lock' />}
+        {!lock && <i className='iconfont icon-unlock' />}
       </div>
     </div>
   );

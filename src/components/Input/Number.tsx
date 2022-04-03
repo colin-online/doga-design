@@ -34,11 +34,18 @@ export const Number: FC<NumberProps> = (props) => {
             inputValueRef.current.value--;
           }
         }
-        onChange(inputValueRef.current.value);
+        onChange(parseInt(inputValueRef.current.value, 10));
       }
     },
     [onChange],
   );
+
+  /* 执行输入操作 */
+  const handleChange = useCallback((e) => {
+    if(onChange) {
+      onChange(parseInt(e.target.value, 10));
+    }
+  }, [onChange])
 
   /* 处理默认值问题 */
   const fixControlledValue = (value: any) => {
@@ -55,7 +62,7 @@ export const Number: FC<NumberProps> = (props) => {
   return (
     <div className={classes} style={style}>
       {/* 数字框 */}
-      <input ref={inputValueRef} {...restProps} onChange={onChange} className='doga-number-inner' step='1' min={1} max='Infinity' type='number' disabled={disabled} />
+      <input ref={inputValueRef} {...restProps} onChange={(e) => handleChange(e)} className='doga-number-inner' step='1' min={1} max='Infinity' type='number' disabled={disabled} />
       <div className={classNames('doga-number-step', disabled ? 'is-disabled' : '')}>
         <span className='doga-number-step-increase' onClick={() => handleClick(true)}>
           +

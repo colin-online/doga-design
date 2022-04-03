@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import React, { ChangeEvent, FC, KeyboardEvent, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import useDebounce from '../../hooks/useDebounce';
-import Icon from '../Icon';
 import Input from '../Input';
 import { InputProps } from '../Input/input';
 import Transition from '../Transition';
@@ -22,7 +21,7 @@ export type DataSourceType<T = {}> = T & DataSourceObject;
 /* AutoComplete组件属性接口定义 */
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
   /* 获取选项 */
-  fetchSuggestions: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
+  fetchSuggestions?: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
   /* 选择事件 */
   onSelect?: (item: DataSourceType) => void;
   /* 渲染选项 */
@@ -56,7 +55,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   /* 更新输入框数据副作用 */
   useEffect(() => {
-    if (debounceInputValue && triggerSearch.current) {
+    if (fetchSuggestions && debounceInputValue && triggerSearch.current) {
       setSuggestions([]);
       const results = fetchSuggestions(debounceInputValue);
       if (results instanceof Promise) {
@@ -160,7 +159,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         <ul className='doga-suggestion-list'>
           {loading && (
             <div className='suggstions-loading-icon'>
-              <Icon icon='spinner' spin />
+              <i className='iconfont icon-loading' />
             </div>
           )}
           {suggestions.map((item, index) => {

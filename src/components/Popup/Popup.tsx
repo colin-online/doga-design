@@ -5,7 +5,6 @@
  */
 import classNames from 'classnames';
 import React, { FC, useRef } from 'react';
-import Icon from '../Icon';
 import Transition from '../Transition';
 import Portal, { PortalProps } from './Portal';
 
@@ -42,7 +41,7 @@ export const Popup: FC<PortalProps> = (props) => {
             <div className='doga-popup-title'>
               {title}
               <div className='doga-popup-close' onClick={onClose}>
-                <Icon icon='close' />
+                <i className='iconfont icon-close' />
               </div>
             </div>
             <div className='doga-popup-content'>{children}</div>

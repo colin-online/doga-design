@@ -4,7 +4,6 @@
  * @description: 上传列表函数组件
  */
 import React, { FC } from 'react';
-import Icon from '../Icon/icon';
 import Progress from '../Progress/progress';
 import { UploadFileProps } from './upload';
 
@@ -23,17 +22,17 @@ export const UploadList: FC<UploadListProps> = (props) => {
         return (
           <li className='doga-upload-list-item' key={item.uid}>
             <span className={`file-name file-name-${item.status}`}>
-              <Icon icon='file-alt' theme='secondary' />
+              <i className='iconfont icon-file' />
               {item.name}
             </span>
             <span className='file-status'>
-              {(item.status === 'uploading' || item.status === 'ready') && <Icon icon='spinner' spin theme='primary' />}
-              {item.status === 'success' && <Icon icon='check-circle' theme='success' />}
-              {item.status === 'error' && <Icon icon='times-circle' theme='danger' />}
+              {(item.status === 'uploading' || item.status === 'ready') && <i className='iconfont icon-loading' />}
+              {item.status === 'success' && <i className='iconfont icon-success' />}
+              {item.status === 'error' && <i className='iconfont icon-error' />}
             </span>
             <span className='file-actions'>
-              <Icon
-                icon='times'
+              <i
+                className='iconfont icon-remove'
                 onClick={() => {
                   onRemove(item);
                 }}

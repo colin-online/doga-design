@@ -5,7 +5,6 @@
  */
 import axios from 'axios';
 import React, { ChangeEvent, FC, useCallback, useRef, useState } from 'react';
-import Icon from '../Icon';
 import Dragger from './dragger';
 import UploadList from './uploadList';
 
@@ -220,7 +219,7 @@ export const Upload: FC<UploadProps> = (props) => {
               children
             ) : (
               <>
-                <Icon icon='upload' size='5x' theme='secondary' />
+                <i className='iconfont icon-upload' />
                 <br />
                 <p>将文件拖到此处上传</p>
               </>

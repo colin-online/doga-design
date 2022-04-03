@@ -9,8 +9,6 @@ export { default as AutoComplete } from './components/AutoComplete';
 export { default as Button } from './components/Botton';
 /* 上传 */
 export { default as CloudUpload } from './components/CloudUpload';
-/* 图标组件 */
-export { default as Icon } from './components/Icon';
 /* 滑动条组件 */
 export { default as Image } from './components/Image';
 /* 文本框组件 */

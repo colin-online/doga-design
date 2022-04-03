@@ -13,7 +13,7 @@ import Cropper, { CloudProps } from './Cropper';
 /* 图片组件属性接口定义 */
 export interface ImageProps {
   /* 图片 */
-  src: string;
+  src?: string;
   /* OSS对象存储参数 */
   cloud?: CloudProps;
   /* 是否可更换 */
@@ -33,7 +33,7 @@ export interface ImageProps {
 /* Image函数组件 */
 export const Image: FC<ImageProps> = (props) => {
   /* 属性 */
-  const { src, cloud, isReplace, isCropper, isTint, isRestore, isRemove, onChange } = props || {};
+  const {  src = '', cloud, isReplace, isCropper, isTint, isRestore, isRemove, onChange } = props || {};
   /* 显示图片 */
   const [picture, setPicture] = useState<any>(src);
   /* 裁剪图片 */

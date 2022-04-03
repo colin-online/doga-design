@@ -5,7 +5,6 @@
  */
 import React, { ChangeEvent, FC, useCallback, useRef } from 'react';
 import { cloudUploadFile } from '../../utils';
-import Icon from '../Icon';
 import { CloudProps } from '../Image/Cropper';
 import Dragger from './dragger';
 
@@ -134,8 +133,7 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
               children
             ) : (
               <>
-                <Icon icon='upload' size='5x' theme='secondary' />
-                <br />
+                <i className='iconfont icon-cloud-upload' />
                 <p>将文件拖到此处上传</p>
               </>
             )}

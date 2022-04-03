@@ -40,11 +40,11 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    svg {
+    i {
       color: $input-placeholder-color;
     }
     &:hover {
-      svg {
+      i {
         color: lighten($input-placeholder-color, 10%);
       }
     }
@@ -212,7 +212,7 @@
   .doga-textarea-count{
     font-size: 14px;
     position: absolute;
-    bottom: 3px;
+    bottom: 0;
     right: 10px;
     color: $gray-500;
   }
