@@ -21,7 +21,7 @@ export interface SliderProps extends InputHTMLAttributes<HTMLElement> {
 }
 
 /* Slider函数组件 */
-export const Slider: FC<SliderProps> = (props) => {
+export const Slider: FC<SliderProps> = props => {
   const { value, min, max, step, append, ...restProps }: any = props;
 
   /* 执行根据步长进度计算 */
@@ -40,11 +40,11 @@ export const Slider: FC<SliderProps> = (props) => {
   }
 
   return (
-    <div className='doga-slider'>
+    <div className="doga-slider">
       <input
         {...restProps}
-        className='doga-slider-inner'
-        type='range'
+        className="doga-slider-inner"
+        type="range"
         min={min || 0}
         max={max || 100}
         step={step || 1}
@@ -52,12 +52,12 @@ export const Slider: FC<SliderProps> = (props) => {
           backgroundImage: `linear-gradient(to right, #555 0%, #555 ${countProgress(value)}%, #f0f3f4 ${countProgress(value)}%, #f0f3f4 100%)`,
         }}
       />
-      {append && (
-        <div className='doga-slider-count'>
+      {
+        <div className="doga-slider-count">
           {value}
-          {<small>{append}</small>}
+          {append && <small>{append}</small>}
         </div>
-      )}
+      }
     </div>
   );
 };

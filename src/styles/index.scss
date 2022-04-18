@@ -3,47 +3,54 @@
  * @Date: 2022-03-13 01:28:51
  * @description: 入口文件
  */
-// Config
+
+/* Config */
 @import 'variables';
 
-// Layout
+/* Layout */
 @import 'normalize';
 
-// Mixin
+/* Mixin */
 @import "mixin";
 
-// Animation
+/* Animation */
 @import "animation";
 
-// Button
+/* Button */
 @import '../components/Botton/style';
 
-// Menu
+/* Menu */
 @import '../components/Menu/style';
 
-// Icon
-@import "../components/Icon/style";
-
-// Input
+/* Input */
 @import "../components/Input/style";
 
-// AutoComplete
+/* AutoComplete */
 @import "../components/AutoComplete/style";
 
-// Upload
+/* Upload */
 @import "../components/Upload/style";
 
-// CloudUpload
+/* CloudUpload */
 @import "../components/CloudUpload/style";
 
-// Progress
+/* Progress */
 @import "../components/Progress/style";
 
-// Slider
+/* Slider */
 @import "../components/Slider/style";
 
-// Image
+/* Image */
 @import "../components/Image/style";
 
-// Popup
+/* Popup */
 @import "../components/Popup/style";
+
+/* ColorPicker */
+@import '../components/ColorPicker/style';
+
+/* Switch */
+@import '../components/Switch/style';
+
+/* Select */
+@import '../components/Select/style';

@@ -7,13 +7,13 @@ import COS from 'cos-js-sdk-v5';
 import { CloudProps } from '../components/Image/Cropper';
 
 /* 获取文件名称 */
-export const getPictureName = (folderName: string = 'UI-Component/cropper-component', fileName: string = '') => {
+export const getPictureName = (folderName = 'UI-Component/cropper-component', fileName = '') => {
   // 随机数
   function rand(min: number, max: number) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-  let date = new Date();
-  let pictureName = `${folderName}/${date.getFullYear()}-${date.getMonth()}-${date.getDate()}/` + new Date().getTime() + rand(1000, 9999) + `${fileName}`;
+  const date = new Date();
+  const pictureName = `${folderName}/${date.getFullYear()}-${date.getMonth()}-${date.getDate()}/` + new Date().getTime() + rand(1000, 9999) + `${fileName}`;
   return pictureName;
 };
 
@@ -46,7 +46,7 @@ export const cloudUploadFile = (file: File, cloud: CloudProps, onProgress?: any,
           reject(err);
         }
         resolve(`https://${data.Location}`);
-      },
+      }
     );
   });
   return promise;

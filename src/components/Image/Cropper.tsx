@@ -8,7 +8,6 @@ import Crop from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import React, { FC, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { cloudUploadFile } from '../../utils';
-import Icon from '../Icon';
 
 /* OSS对象存储参数接口定义 */
 export type CloudProps = {
@@ -44,7 +43,7 @@ export interface CropperDataProps {
 let cropper: Crop;
 
 /* Cropper函数组件 */
-export const Cropper: FC<CropperProps> = (props) => {
+export const Cropper: FC<CropperProps> = props => {
   const { src, cloud, childrenRef } = props || {};
   /* 裁剪图片 */
   const cropperPictureRef = useRef<null | HTMLImageElement>(null);
@@ -59,7 +58,7 @@ export const Cropper: FC<CropperProps> = (props) => {
     handleCropperSuccessClick: () => {
       // 再次上传的处理方法（❗️这里后续实现需要采用Node中间层处理）
       if (cloud) {
-        const promise = new Promise((resolve, reject) => {
+        const promise = new Promise(resolve => {
           cropper.getCroppedCanvas().toBlob(async (blob: any) => {
             const file = new window.File([blob], 'fileName.png', { type: 'png' });
             const result = await cloudUploadFile(file, cloud);
@@ -135,7 +134,7 @@ export const Cropper: FC<CropperProps> = (props) => {
         cropper.scaleY(scaleY ? -1 : 1);
       }
     },
-    [scaleX, scaleY],
+    [scaleX, scaleY]
   );
 
   /* 执行图片上/下/左/右平移操作 */
@@ -166,40 +165,40 @@ export const Cropper: FC<CropperProps> = (props) => {
   return (
     <div className={classes}>
       {/* 操作事件 */}
-      <div className='doga-cropper-picture-handle'>
+      <div className="doga-cropper-picture-handle">
         {/* 还原 */}
-        <div className='doga-cropper-picture-handle-icon' onClick={() => handleRestoreClick()}>
-          <div className='doga-cropper-picture-handle-tip'>还原图片</div>
-          <Icon icon='repeat' />
+        <div className="doga-cropper-picture-handle-icon" onClick={() => handleRestoreClick()}>
+          <div className="doga-cropper-picture-handle-tip">还原图片</div>
+          <i className="iconfont icon-recover" />
         </div>
         {/* 水平翻转 */}
-        <div className='doga-cropper-picture-handle-icon' onClick={() => handleFlipClick(true)}>
-          <div className='doga-cropper-picture-handle-tip'>水平翻转</div>
-          <Icon icon='arrows-left-right' />
+        <div className="doga-cropper-picture-handle-icon" onClick={() => handleFlipClick(true)}>
+          <div className="doga-cropper-picture-handle-tip">水平翻转</div>
+          <i className="iconfont icon-horizontal" />
         </div>
         {/* 垂直翻转 */}
-        <div className='doga-cropper-picture-handle-icon' onClick={() => handleFlipClick(false)}>
-          <div className='doga-cropper-picture-handle-tip'>垂直翻转</div>
-          <Icon icon='arrows-up-down' />
+        <div className="doga-cropper-picture-handle-icon" onClick={() => handleFlipClick(false)}>
+          <div className="doga-cropper-picture-handle-tip">垂直翻转</div>
+          <i className="iconfont icon-vertical" />
         </div>
         {/* 左旋 */}
-        <div className='doga-cropper-picture-handle-icon' onClick={() => handleRotateClick(true)}>
-          <div className='doga-cropper-picture-handle-tip'>向左旋转</div>
-          <Icon icon='arrow-rotate-left' />
+        <div className="doga-cropper-picture-handle-icon" onClick={() => handleRotateClick(true)}>
+          <div className="doga-cropper-picture-handle-tip">向左旋转</div>
+          <i className="iconfont icon-rotate-left" />
         </div>
         {/* 右旋 */}
-        <div className='doga-cropper-picture-handle-icon' onClick={() => handleRotateClick(false)}>
-          <div className='doga-cropper-picture-handle-tip'>向右旋转</div>
-          <Icon icon='arrow-rotate-right' />
+        <div className="doga-cropper-picture-handle-icon" onClick={() => handleRotateClick(false)}>
+          <div className="doga-cropper-picture-handle-tip">向右旋转</div>
+          <i className="iconfont icon-rotate-right" />
         </div>
       </div>
       {/* 图片 */}
-      <img className='doga-cropper-picture' ref={cropperPictureRef} alt='' src={src} />
+      <img className="doga-cropper-picture" ref={cropperPictureRef} alt="" src={src} />
 
       {/* 开启/关闭锁 */}
-      <div className='doga-cropper-picture-handle-lock' onClick={() => handleLockClick(lock)}>
-        {lock && <Icon icon='lock' />}
-        {!lock && <Icon icon='lock-open' />}
+      <div className="doga-cropper-picture-handle-lock" onClick={() => handleLockClick(lock)}>
+        {lock && <i className="iconfont icon-lock" />}
+        {!lock && <i className="iconfont icon-unlock" />}
       </div>
     </div>
   );
