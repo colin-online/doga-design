@@ -13,26 +13,26 @@ interface UploadListProps {
 }
 
 /* UploadList函数组件 */
-export const UploadList: FC<UploadListProps> = (props) => {
+export const UploadList: FC<UploadListProps> = props => {
   const { fileList, onRemove } = props;
 
   return (
-    <ul className='doga-upload-list'>
-      {fileList.map((item) => {
+    <ul className="doga-upload-list">
+      {fileList.map(item => {
         return (
-          <li className='doga-upload-list-item' key={item.uid}>
+          <li className="doga-upload-list-item" key={item.uid}>
             <span className={`file-name file-name-${item.status}`}>
-              <i className='iconfont icon-file' />
+              <i className="iconfont icon-file" />
               {item.name}
             </span>
-            <span className='file-status'>
-              {(item.status === 'uploading' || item.status === 'ready') && <i className='iconfont icon-loading' />}
-              {item.status === 'success' && <i className='iconfont icon-success' />}
-              {item.status === 'error' && <i className='iconfont icon-error' />}
+            <span className="file-status">
+              {(item.status === 'uploading' || item.status === 'ready') && <i className="iconfont icon-loading" />}
+              {item.status === 'success' && <i className="iconfont icon-success" />}
+              {item.status === 'error' && <i className="iconfont icon-error" />}
             </span>
-            <span className='file-actions'>
+            <span className="file-actions">
               <i
-                className='iconfont icon-remove'
+                className="iconfont icon-remove"
                 onClick={() => {
                   onRemove(item);
                 }}

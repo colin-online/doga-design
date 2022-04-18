@@ -29,7 +29,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
 }
 
 /* Input函数组件 */
-export const Input: FC<InputProps> = (props) => {
+export const Input: FC<InputProps> = props => {
   const { size, appendIcon, prependIcon, disabled, prepend, append, focus, style, ...restProps } = props || {};
   /* 输入框 */
   const inputRef = useRef<null | HTMLInputElement>(null);
@@ -65,23 +65,15 @@ export const Input: FC<InputProps> = (props) => {
   return (
     <div className={classes} style={style}>
       {/* 前缀 */}
-      {prepend && <div className='doga-input-group-prepend'>{prepend}</div>}
+      {prepend && <div className="doga-input-group-prepend">{prepend}</div>}
       {/* 前置Icon */}
-      {prependIcon && !prepend && (
-        <div className='prepend-icon-wrapper'>
-          {prependIcon}
-        </div>
-      )}
+      {prependIcon && !prepend && <div className="prepend-icon-wrapper">{prependIcon}</div>}
       {/* 文本框 */}
-      <input {...restProps} className='doga-input-inner' ref={inputRef} disabled={disabled} />
+      <input {...restProps} className="doga-input-inner" ref={inputRef} disabled={disabled} />
       {/* 后缀 */}
-      {append && <div className='doga-input-group-append'>{append}</div>}
+      {append && <div className="doga-input-group-append">{append}</div>}
       {/* 后置Icon */}
-      {appendIcon && !append && (
-        <div className='append-icon-wrapper'>
-          {appendIcon}
-        </div>
-      )}
+      {appendIcon && !append && <div className="append-icon-wrapper">{appendIcon}</div>}
     </div>
   );
 };

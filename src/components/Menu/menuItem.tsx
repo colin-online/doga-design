@@ -15,7 +15,7 @@ export interface MenuItemProps {
   style?: CSSProperties;
 }
 /* Menu子项函数组件 */
-const MenuItem: FC<MenuItemProps> = (props) => {
+const MenuItem: FC<MenuItemProps> = props => {
   const { index, disabled, className, style, children } = props || {};
   /* 获取上下文 */
   const context = useContext(MenuContext);

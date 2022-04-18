@@ -36,7 +36,7 @@ export interface CloudUploadProps {
 }
 
 /* CloudUpload函数组件 */
-export const CloudUpload: FC<CloudUploadProps> = (props) => {
+export const CloudUpload: FC<CloudUploadProps> = props => {
   const {
     cloud,
     accept,
@@ -60,7 +60,7 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
         onChange(result);
       }
     },
-    [cloud, onChange, onProgress, onError],
+    [cloud, onChange, onProgress, onError]
   );
 
   /* 执行点击上传控件操作 */
@@ -73,14 +73,14 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
   /* 执行上传文件操作 */
   const handleUploadFiles = useCallback(
     (files: FileList) => {
-      let postFiles = Array.from(files);
-      postFiles.forEach((file) => {
+      const postFiles = Array.from(files);
+      postFiles.forEach(file => {
         if (!beforeUpload) {
           onPostFile(file);
         } else {
           const result = beforeUpload(file);
           if (result && result instanceof Promise) {
-            result.then((processedFile) => {
+            result.then(processedFile => {
               onPostFile(processedFile);
             });
           } else if (result !== false) {
@@ -89,7 +89,7 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
         }
       });
     },
-    [beforeUpload, onPostFile],
+    [beforeUpload, onPostFile]
   );
 
   /* 执行删除文件操作 */
@@ -117,15 +117,15 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
         fileInputRef.current.value = '';
       }
     },
-    [handleUploadFiles],
+    [handleUploadFiles]
   );
 
   return (
-    <div className='doga-cloud-upload'>
-      <div className='doga-cloud-upload-input' onClick={handleClick}>
+    <div className="doga-cloud-upload">
+      <div className="doga-cloud-upload-input" onClick={handleClick}>
         {drag ? (
           <Dragger
-            onFile={(files) => {
+            onFile={files => {
               handleUploadFiles(files);
             }}
           >
@@ -133,7 +133,7 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
               children
             ) : (
               <>
-                <i className='iconfont icon-cloud-upload' />
+                <i className="iconfont icon-cloud-upload" />
                 <p>将文件拖到此处上传</p>
               </>
             )}
@@ -141,7 +141,7 @@ export const CloudUpload: FC<CloudUploadProps> = (props) => {
         ) : (
           children
         )}
-        <input className='doga-cloud-upload-file-input' style={{ display: 'none' }} type='file' ref={fileInputRef} accept={accept} multiple={multiple} onChange={handleFileChange} />
+        <input className="doga-cloud-upload-file-input" style={{ display: 'none' }} type="file" ref={fileInputRef} accept={accept} multiple={multiple} onChange={handleFileChange} />
       </div>
     </div>
   );

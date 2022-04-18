@@ -58,7 +58,7 @@ export const Portal = (props: PortalProps) => {
         document.body.removeChild(defaultNodeRef.current);
       }
     },
-    [],
+    []
   );
   /* 判断是否浏览器环境 */
   if (!isUseDOM) return null;

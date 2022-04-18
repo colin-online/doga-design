@@ -182,6 +182,67 @@ const App = () => (
 | append   | 后缀         | string  |   -    |
 | disabled | 是否禁用状态 | boolean | false  |
 
+#### ColorPicker 选择器
+
+```jsx
+import { ColorPicker } from 'doga-design';
+
+const App = () => (
+  <>
+    <ColorPicker title='文字颜色' defaultColor='#ffffff' defaultColorList={[ hex: '#ffffff', rgba: 'rgba(255,255,255,1)']} />
+  </>
+);
+```
+
+| 属性    | 说明                                                           |                                                                             类型                                                                              | 默认值  |
+| :------ | :------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: |
+| title    | 标题                                                   |       string                                                               |    -    |
+| defaultColor    | 默认颜色|                                                                            string                                                                             |    -    |
+| defaultColorList | 默认颜色列表                                               |                                                                           arrary                                                                            |    -    |
+
+#### Switch 选择器
+
+```jsx
+import { Switch } from 'doga-design';
+
+const App = () => (
+  <>
+    <Switch checked={false} icon={<i className='iconfont icon-switch' />} />
+  </>
+);
+```
+
+| 属性    | 说明                                                           |                                                                             类型                                                                              | 默认值  |
+| :------ | :------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: |
+| checked    | 是否选中                                                   |       boolean                                                               |    -    |
+| icon    | 图标|                                                                            string                                                                             |    -    |
+
+#### Select 选择器
+
+
+```jsx
+import { Select } from 'doga-design';
+
+const App = () => (
+  <>
+    <Select checked={false} appendIcon={<i className='iconfont icon-switch' />} options={
+        [
+          { value: '"SimSun","STSong"', label: '宋体' },
+          { value: '"SimHei","STHeiti"', label: '黑体' },
+          { value: '"KaiTi","STKaiti"', label: '楷体' },
+          { value: '"FangSong","STFangsong"', label: '仿宋' }
+        ]
+      } />
+  </>
+);
+```
+
+| 属性    | 说明                                                           |                                                                             类型                                                                              | 默认值  |
+| :------ | :------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: |
+| checked    | 是否选中                                                   |       boolean                                                               |    -    |
+| appendIcon    | 后置图标|                                                                            string                                                                             |    -    |
+| options | 选项列表                                               |                                                                           arrary                                                                            |    -    |
+
 #### Popup 弹出层
 
 ```jsx
@@ -289,50 +350,6 @@ const App = () => (
 | onChange         | 文件状态改变时的钩子，上传成功或者失败时都会被调用                         | function |   -    |
 | onRemove         | 文件列表移除文件时的钩子                                                   | function |   -    |
 
-#### Menu 导航菜单
-
-```jsx
-import { Menu } from 'doga-design';
-
-const App = () => (
-  <>
-    <Menu defaultIndex='0' defaultOpenSubMenus={[]} mode='horizontal' onSelect={function noRefCheck() {}}>
-      <Menu.Item>下拉选项</Menu.Item>
-      <Menu.Item>下拉选项</Menu.Item>
-      <Menu.Item disabled>禁用</Menu.Item>
-      <Menu.SubMenu title='下拉选项'>
-        <Menu.Item>下拉选项一</Menu.Item>
-        <Menu.Item>下拉选项二</Menu.Item>
-      </Menu.SubMenu>
-    </Menu>
-  </>
-);
-```
-
-#### Menu
-
-| 属性                | 说明                                    |                     类型                      |         默认值          |
-| :------------------ | :-------------------------------------- | :-------------------------------------------: | :---------------------: |
-| defaultIndex        | 默认 active 的菜单项的索引值            |                    string                     |            -            |
-| mode                | 菜单类型 横向或者纵向                   | <code>horizontal</code> <code>vertical</code> | <code>horizontal</code> |
-| defaultOpenSubMenus | 设置子菜单的默认打开 只在纵向模式下生效 |                     array                     |            -            |
-| className           | 下拉菜单的扩展类名                      |                    string                     |            -            |
-
-#### MenuItem
-
-| 属性      | 说明                   |  类型   | 默认值 |
-| :-------- | :--------------------- | :-----: | :----: |
-| index     | -                      | string  |   -    |
-| disabled  | 选项是否被禁用         | boolean |   -    |
-| className | 下拉菜单选项的扩展类名 | string  |   -    |
-
-#### SubMenu
-
-| 属性      | 说明                     |  类型  | 默认值 |
-| :-------- | :----------------------- | :----: | :----: |
-| title     | 下拉菜单选项的文字       | string |   -    |
-| className | 下拉菜单子菜单的扩展类名 | string |   -    |
-
 #### Upload 上传(手动/拖拽)
 
 ```jsx
@@ -376,6 +393,50 @@ const App = () => (
 | onError         | 文件上传失败时的钩子                                                       | function |   -    |
 | onChange        | 文件状态改变时的钩子，上传成功或者失败时都会被调用                         | function |   -    |
 | onRemove        | 文件列表移除文件时的钩子                                                   | function |   -    |
+
+#### Menu 导航菜单
+
+```jsx
+import { Menu } from 'doga-design';
+
+const App = () => (
+  <>
+    <Menu defaultIndex='0' defaultOpenSubMenus={[]} mode='horizontal' onSelect={function noRefCheck() {}}>
+      <Menu.Item>下拉选项</Menu.Item>
+      <Menu.Item>下拉选项</Menu.Item>
+      <Menu.Item disabled>禁用</Menu.Item>
+      <Menu.SubMenu title='下拉选项'>
+        <Menu.Item>下拉选项一</Menu.Item>
+        <Menu.Item>下拉选项二</Menu.Item>
+      </Menu.SubMenu>
+    </Menu>
+  </>
+);
+```
+
+#### Menu
+
+| 属性                | 说明                                    |                     类型                      |         默认值          |
+| :------------------ | :-------------------------------------- | :-------------------------------------------: | :---------------------: |
+| defaultIndex        | 默认 active 的菜单项的索引值            |                    string                     |            -            |
+| mode                | 菜单类型 横向或者纵向                   | <code>horizontal</code> <code>vertical</code> | <code>horizontal</code> |
+| defaultOpenSubMenus | 设置子菜单的默认打开 只在纵向模式下生效 |                     array                     |            -            |
+| className           | 下拉菜单的扩展类名                      |                    string                     |            -            |
+
+#### MenuItem
+
+| 属性      | 说明                   |  类型   | 默认值 |
+| :-------- | :--------------------- | :-----: | :----: |
+| index     | -                      | string  |   -    |
+| disabled  | 选项是否被禁用         | boolean |   -    |
+| className | 下拉菜单选项的扩展类名 | string  |   -    |
+
+#### SubMenu
+
+| 属性      | 说明                     |  类型  | 默认值 |
+| :-------- | :----------------------- | :----: | :----: |
+| title     | 下拉菜单选项的文字       | string |   -    |
+| className | 下拉菜单子菜单的扩展类名 | string |   -    |
 
 ## 📧 召唤作者
 

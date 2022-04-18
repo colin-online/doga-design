@@ -16,7 +16,7 @@ export interface NumberProps extends InputHTMLAttributes<HTMLElement> {
 }
 
 /* Number函数组件 */
-export const Number: FC<NumberProps> = (props) => {
+export const Number: FC<NumberProps> = props => {
   const { disabled, onChange, style, ...restProps } = props;
   const inputValueRef = useRef<HTMLInputElement | any>();
   const classes = classNames('doga-number', {
@@ -37,15 +37,18 @@ export const Number: FC<NumberProps> = (props) => {
         onChange(parseInt(inputValueRef.current.value, 10));
       }
     },
-    [onChange],
+    [onChange]
   );
 
   /* 执行输入操作 */
-  const handleChange = useCallback((e) => {
-    if(onChange) {
-      onChange(parseInt(e.target.value, 10));
-    }
-  }, [onChange])
+  const handleChange = useCallback(
+    e => {
+      if (onChange) {
+        onChange(parseInt(e.target.value, 10));
+      }
+    },
+    [onChange]
+  );
 
   /* 处理默认值问题 */
   const fixControlledValue = (value: any) => {
@@ -62,12 +65,12 @@ export const Number: FC<NumberProps> = (props) => {
   return (
     <div className={classes} style={style}>
       {/* 数字框 */}
-      <input ref={inputValueRef} {...restProps} onChange={(e) => handleChange(e)} className='doga-number-inner' step='1' min={1} max='Infinity' type='number' disabled={disabled} />
+      <input ref={inputValueRef} {...restProps} onChange={e => handleChange(e)} className="doga-number-inner" step="1" min={1} max="Infinity" type="number" disabled={disabled} />
       <div className={classNames('doga-number-step', disabled ? 'is-disabled' : '')}>
-        <span className='doga-number-step-increase' onClick={() => handleClick(true)}>
+        <span className="doga-number-step-increase" onClick={() => handleClick(true)}>
           +
         </span>
-        <span className='doga-number-step-decrease' onClick={() => handleClick(false)}>
+        <span className="doga-number-step-decrease" onClick={() => handleClick(false)}>
           -
         </span>
       </div>

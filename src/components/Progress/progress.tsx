@@ -20,13 +20,13 @@ export interface ProgressProps {
 }
 
 /* Progress函数组件 */
-export const Progress: FC<ProgressProps> = (props) => {
+export const Progress: FC<ProgressProps> = props => {
   const { percent, strokeHeight, showText, styles, theme } = props || {};
   return (
-    <div className='doga-progress-bar' style={styles}>
-      <div className='doga-progress-bar-outer' style={{ height: `${strokeHeight}px` }}>
+    <div className="doga-progress-bar" style={styles}>
+      <div className="doga-progress-bar-outer" style={{ height: `${strokeHeight}px` }}>
         <div className={`doga-progress-bar-inner color-${theme}`} style={{ width: `${percent}%` }}>
-          {showText && <span className='inner-text'>{`${percent}%`}</span>}
+          {showText && <span className="inner-text">{`${percent}%`}</span>}
         </div>
       </div>
     </div>

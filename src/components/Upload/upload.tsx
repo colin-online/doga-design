@@ -59,7 +59,7 @@ export interface UploadProps {
 }
 
 /* Upload函数组件 */
-export const Upload: FC<UploadProps> = (props) => {
+export const Upload: FC<UploadProps> = props => {
   const { name, data, headers, withCredentials, accept, multiple, drag, action, defaultFileList, isShowList, beforeUpload, onProgress, onSuccess, onError, onChange, onRemove, children } = props || {};
   /* 文件上传控件 */
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -68,8 +68,8 @@ export const Upload: FC<UploadProps> = (props) => {
 
   /* 执行更新列表操作 */
   const updateFileList = useCallback((updateFile: UploadFileProps, updateObject: Partial<UploadFileProps>) => {
-    setFileList((prevList) => {
-      return prevList.map((file) => {
+    setFileList(prevList => {
+      return prevList.map(file => {
         if (file.uid === updateFile.uid) {
           return { ...file, ...updateObject };
         } else {
@@ -82,7 +82,7 @@ export const Upload: FC<UploadProps> = (props) => {
   /* 上传文件逻辑 */
   const onPostFile = useCallback(
     (file: File) => {
-      let _file: UploadFileProps = {
+      const _file: UploadFileProps = {
         uid: `doga_upload_file_${Date.now()}`,
         status: 'ready',
         name: file.name,
@@ -90,13 +90,13 @@ export const Upload: FC<UploadProps> = (props) => {
         percent: 0,
         raw: file,
       };
-      setFileList((prevList) => {
+      setFileList(prevList => {
         return [_file, ...prevList];
       });
       const formData = new FormData();
       formData.append(name || 'file', file);
       if (data) {
-        Object.keys(data).forEach((key) => {
+        Object.keys(data).forEach(key => {
           formData.append(key, data[key]);
         });
       }
@@ -107,8 +107,8 @@ export const Upload: FC<UploadProps> = (props) => {
             'Content-Type': 'multipart/form-data',
           },
           withCredentials,
-          onUploadProgress: (e) => {
-            let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+          onUploadProgress: e => {
+            const percentage = Math.round((e.loaded * 100) / e.total) || 0;
             if (percentage < 100) {
               updateFileList(_file, {
                 percent: percentage,
@@ -120,7 +120,7 @@ export const Upload: FC<UploadProps> = (props) => {
             }
           },
         })
-        .then((response) => {
+        .then(response => {
           updateFileList(_file, {
             status: 'success',
             response: response?.data,
@@ -129,7 +129,7 @@ export const Upload: FC<UploadProps> = (props) => {
             onSuccess(response.data, file);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
           updateFileList(_file, {
             status: 'error',
@@ -145,7 +145,7 @@ export const Upload: FC<UploadProps> = (props) => {
           }
         });
     },
-    [name, data, headers, withCredentials, action, onProgress, onSuccess, onError, onChange, updateFileList],
+    [name, data, headers, withCredentials, action, onProgress, onSuccess, onError, onChange, updateFileList]
   );
 
   /* 执行点击上传控件操作 */
@@ -158,14 +158,14 @@ export const Upload: FC<UploadProps> = (props) => {
   /* 执行上传文件操作 */
   const handleUploadFiles = useCallback(
     (files: FileList) => {
-      let postFiles = Array.from(files);
-      postFiles.forEach((file) => {
+      const postFiles = Array.from(files);
+      postFiles.forEach(file => {
         if (!beforeUpload) {
           onPostFile(file);
         } else {
           const result = beforeUpload(file);
           if (result && result instanceof Promise) {
-            result.then((processedFile) => {
+            result.then(processedFile => {
               onPostFile(processedFile);
             });
           } else if (result !== false) {
@@ -174,20 +174,20 @@ export const Upload: FC<UploadProps> = (props) => {
         }
       });
     },
-    [beforeUpload, onPostFile],
+    [beforeUpload, onPostFile]
   );
 
   /* 执行删除文件操作 */
   const handleRemove = useCallback(
     (file: UploadFileProps) => {
-      setFileList((prevList) => {
-        return prevList.filter((item) => item.uid !== file.uid);
+      setFileList(prevList => {
+        return prevList.filter(item => item.uid !== file.uid);
       });
       if (onRemove) {
         onRemove(file);
       }
     },
-    [onRemove],
+    [onRemove]
   );
 
   /* 监听文件变化 */
@@ -203,15 +203,15 @@ export const Upload: FC<UploadProps> = (props) => {
         fileInputRef.current.value = '';
       }
     },
-    [handleUploadFiles],
+    [handleUploadFiles]
   );
 
   return (
-    <div className='doga-upload'>
-      <div className='doga-upload-input' onClick={handleClick}>
+    <div className="doga-upload">
+      <div className="doga-upload-input" onClick={handleClick}>
         {drag ? (
           <Dragger
-            onFile={(files) => {
+            onFile={files => {
               handleUploadFiles(files);
             }}
           >
@@ -219,7 +219,7 @@ export const Upload: FC<UploadProps> = (props) => {
               children
             ) : (
               <>
-                <i className='iconfont icon-upload' />
+                <i className="iconfont icon-upload" />
                 <br />
                 <p>将文件拖到此处上传</p>
               </>
@@ -228,7 +228,7 @@ export const Upload: FC<UploadProps> = (props) => {
         ) : (
           children
         )}
-        <input className='doga-file-input' style={{ display: 'none' }} type='file' ref={fileInputRef} accept={accept} multiple={multiple} onChange={handleFileChange} />
+        <input className="doga-file-input" style={{ display: 'none' }} type="file" ref={fileInputRef} accept={accept} multiple={multiple} onChange={handleFileChange} />
       </div>
 
       {/* 上传列表 */}
