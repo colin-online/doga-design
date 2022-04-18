@@ -12,7 +12,7 @@ interface DraggerProps {
 }
 
 /* Dragger函数组件 */
-export const Dragger: FC<DraggerProps> = (props) => {
+export const Dragger: FC<DraggerProps> = props => {
   const { onFile, children } = props;
   const [dragOver, setDragOver] = useState(false);
   const classes = classNames('doga-uploader-dragger', {
@@ -33,7 +33,7 @@ export const Dragger: FC<DraggerProps> = (props) => {
   };
 
   return (
-    <div className={classes} onDragOver={(e) => handleDrag(e, true)} onDragLeave={(e) => handleDrag(e, false)} onDrop={handleDrop}>
+    <div className={classes} onDragOver={e => handleDrag(e, true)} onDragLeave={e => handleDrag(e, false)} onDrop={handleDrop}>
       {children}
     </div>
   );

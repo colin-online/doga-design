@@ -1,0 +1,71 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-04-18 20:38:04
+ * @description: 下拉选择器组件样式
+ */
+.doga-select {
+  width: 100%;
+  position: relative;
+
+  .doga-select-input {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    outline: 0;
+    padding: 0 16px;
+    border: $input-border-width solid $gray-300;
+    border-radius: 4px;
+    background-color: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    /* 滑过样式 */
+    &:hover {
+      border: $input-border-width solid $gray-400;
+    }
+  }
+
+  .doga-select-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 0;
+    overflow-y: auto;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #e0e5ea;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
+    opacity: 0;
+
+    &.active {
+      height: 200px;
+      opacity: 1;
+    }
+
+    .doga-select-list-item {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      &.doga-select-list-checked {
+        background-color: #f5f5f5;
+      }
+
+    }
+  }
+}

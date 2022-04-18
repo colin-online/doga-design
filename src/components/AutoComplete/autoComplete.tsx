@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import React, { ChangeEvent, FC, KeyboardEvent, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import useDebounce from '../../hooks/useDebounce';
-import Icon from '../Icon';
 import Input from '../Input';
 import { InputProps } from '../Input/input';
 import Transition from '../Transition';
@@ -22,7 +21,7 @@ export type DataSourceType<T = {}> = T & DataSourceObject;
 /* AutoComplete组件属性接口定义 */
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
   /* 获取选项 */
-  fetchSuggestions: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
+  fetchSuggestions?: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
   /* 选择事件 */
   onSelect?: (item: DataSourceType) => void;
   /* 渲染选项 */
@@ -30,7 +29,7 @@ export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
 }
 
 /* AutoComplete函数组件 */
-export const AutoComplete: FC<AutoCompleteProps> = (props) => {
+export const AutoComplete: FC<AutoCompleteProps> = props => {
   const { fetchSuggestions, onSelect, renderOption, value, ...restProps } = props || {};
   /* 延迟加载 */
   const [loading, setLoading] = useState(false);
@@ -56,12 +55,12 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   /* 更新输入框数据副作用 */
   useEffect(() => {
-    if (debounceInputValue && triggerSearch.current) {
+    if (fetchSuggestions && debounceInputValue && triggerSearch.current) {
       setSuggestions([]);
       const results = fetchSuggestions(debounceInputValue);
       if (results instanceof Promise) {
         setLoading(true);
-        results.then((data) => {
+        results.then(data => {
           setLoading(false);
           setSuggestions(data);
           if (data.length > 0) {
@@ -98,7 +97,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
       }
       triggerSearch.current = false;
     },
-    [onSelect],
+    [onSelect]
   );
 
   /* 执行标记索引操作 */
@@ -110,7 +109,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
       }
       setHighlightIndex(index);
     },
-    [suggestions],
+    [suggestions]
   );
 
   /* 键盘控制事件 */
@@ -135,7 +134,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
           break;
       }
     },
-    [highlightIndex, highlight, suggestions, handleSelect],
+    [highlightIndex, highlight, suggestions, handleSelect]
   );
 
   /* 渲染模版 */
@@ -143,7 +142,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     (item: DataSourceType) => {
       return renderOption ? renderOption(item) : item.value;
     },
-    [renderOption],
+    [renderOption]
   );
 
   /* 生成下拉项 */
@@ -151,16 +150,16 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     return (
       <Transition
         in={showDropdown || loading}
-        animation='zoom-in-top'
+        animation="zoom-in-top"
         timeout={300}
         onExited={() => {
           setSuggestions([]);
         }}
       >
-        <ul className='doga-suggestion-list'>
+        <ul className="doga-suggestion-list">
           {loading && (
-            <div className='suggstions-loading-icon'>
-              <Icon icon='spinner' spin />
+            <div className="suggstions-loading-icon">
+              <i className="iconfont icon-loading" />
             </div>
           )}
           {suggestions.map((item, index) => {
@@ -179,8 +178,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }, [loading, showDropdown, suggestions, highlightIndex, handleSelect, renderTemplate]);
 
   return (
-    <div className='doga-auto-complete' ref={componentRef}>
-      <Input appendIcon='caret-down' value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handlekeyDown} />
+    <div className="doga-auto-complete" ref={componentRef}>
+      <Input appendIcon={<i className="iconfont icon-caret-down" />} value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handlekeyDown} />
       {generateDropdown()}
     </div>
   );

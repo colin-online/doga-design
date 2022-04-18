@@ -32,9 +32,12 @@
       align-items: center;
       justify-content: space-between;
       .doga-popup-close{
-        color: $gray-500;
-        font-size: 20px;
         cursor: pointer;
+
+        i {
+          font-size: 20px;
+          color: $gray-600;
+        }
       }
     }
     .doga-popup-content {

@@ -5,7 +5,6 @@
  */
 import classNames from 'classnames';
 import React, { Children, cloneElement, FC, FunctionComponentElement, MouseEvent, useCallback, useContext, useState } from 'react';
-import Icon from '../Icon';
 import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
@@ -18,7 +17,7 @@ export interface SubMenuProps {
 }
 
 /* Menu子菜单函数组件 */
-const SubMenu: FC<SubMenuProps> = (props) => {
+const SubMenu: FC<SubMenuProps> = props => {
   const { index, title, className, children } = props || {};
   /* 获取上下文 */
   const context = useContext(MenuContext);
@@ -41,7 +40,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
       e.preventDefault();
       setIsOpen(!isOpen);
     },
-    [isOpen],
+    [isOpen]
   );
 
   /* 滑过事件 */
@@ -83,7 +82,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
       }
     });
     return (
-      <Transition in={isOpen} timeout={300} animation='zoom-in-top'>
+      <Transition in={isOpen} timeout={300} animation="zoom-in-top">
         <ul className={subMenuClass}>{childrenComponent}</ul>
       </Transition>
     );
@@ -91,9 +90,9 @@ const SubMenu: FC<SubMenuProps> = (props) => {
 
   return (
     <li key={index} className={classes} {...hoverEvents}>
-      <div className='submenu-title' {...clickEvents}>
+      <div className="submenu-title" {...clickEvents}>
         {title}
-        <Icon icon='angle-down' className='arrow-icon' />
+        <i className="arrow-icon iconfont icon-down" />
       </div>
       {renderChildren()}
     </li>

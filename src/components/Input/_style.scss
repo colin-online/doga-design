@@ -40,11 +40,11 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    svg {
+    i {
       color: $input-placeholder-color;
     }
     &:hover {
-      svg {
+      i {
         color: lighten($input-placeholder-color, 10%);
       }
     }
@@ -72,8 +72,9 @@
     padding: 10px 16px;
     outline: none;
     box-shadow: none;
-    cursor: pointer;
     font-family: initial;
+    cursor: pointer;
+    caret-color: $gray-600;
 
     &:focus {
       cursor: text;

@@ -3,6 +3,26 @@
  * @Date: 2022-03-14 18:16:32
  * @description: 上传组件样式
  */
+/* 旋转动画 */
+@keyframes turn{
+  0%{-webkit-transform:rotate(0deg);}
+  25%{-webkit-transform:rotate(90deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(270deg);}
+  100%{-webkit-transform:rotate(360deg);}
+}
+
+.doga-upload{
+  .doga-upload-input {
+    i{
+      font-size: 60px;
+      color: $gray-600;
+    }
+    p {
+      color: $gray-600;
+    }
+  }
+}
 .doga-upload-list {
   margin: 0;
   padding: 0;
@@ -43,14 +63,24 @@
   .file-name {
     margin-left: 5px;
     margin-right: 40px;
-    svg {
+    i {
       margin-right: 5px;
       color: $gray-500;
     }
   }
+  .file-name-success {
+    color: $primary;
+    display: flex;
+    align-items: center;
+    i {
+      color: $primary;
+    }
+  }
   .file-name-error {
     color: $danger;
-    svg {
+    display: flex;
+    align-items: center;
+    i {
       color: $danger;
     }
   }
@@ -60,11 +90,18 @@
     right: 5px;
     top: 0;
     line-height: inherit;
+    i{
+      color: $gray-600;
+    }
+    .icon-loading {
+      display: block;
+      animation: turn 1s linear infinite;
+    }
   }
   .file-actions {
     display: none;
     position: absolute;
-    right: 7px;
+    right: 5px;
     top: 0;
     line-height: inherit;
     cursor: pointer;

@@ -5,11 +5,10 @@
  */
 import classNames from 'classnames';
 import React, { FC, useRef } from 'react';
-import Icon from '../Icon';
 import Transition from '../Transition';
 import Portal, { PortalProps } from './Portal';
 
-export const Popup: FC<PortalProps> = (props) => {
+export const Popup: FC<PortalProps> = props => {
   const firstRenderRef = useRef(false);
   const { visible } = props;
   /* 在首次visible为true之前，都应该返回null */
@@ -34,18 +33,18 @@ export const Popup: FC<PortalProps> = (props) => {
   };
 
   return (
-    <Transition in={visible} animation='zoom-in-center' timeout={300} unmountOnExit={destroyOnClose} appear onExited={() => {}}>
+    <Transition in={visible} animation="zoom-in-center" timeout={300} unmountOnExit={destroyOnClose} appear>
       <Portal node={node}>
         <div className={classes}>
-          <div className='doga-popup-modal' onClick={onMaskClick}></div>
-          <div className='doga-popup-wrapper' style={{ width: width ? `${width}px` : 'auto' }}>
-            <div className='doga-popup-title'>
+          <div className="doga-popup-modal" onClick={onMaskClick}></div>
+          <div className="doga-popup-wrapper" style={{ width: width ? `${width}px` : 'auto' }}>
+            <div className="doga-popup-title">
               {title}
-              <div className='doga-popup-close' onClick={onClose}>
-                <Icon icon='close' />
+              <div className="doga-popup-close" onClick={onClose}>
+                <i className="iconfont icon-close" />
               </div>
             </div>
-            <div className='doga-popup-content'>{children}</div>
+            <div className="doga-popup-content">{children}</div>
           </div>
         </div>
       </Portal>

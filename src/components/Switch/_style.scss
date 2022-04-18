@@ -1,0 +1,26 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-04-18 15:56:22
+ * @description: 切换选择器组件样式
+ */
+.doga-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  color: $gray-400;
+  border: $input-border-width solid $gray-200;
+  cursor: pointer;
+
+  &.selected {
+    color: $gray-700;
+    border: $input-border-width solid $gray-500;
+  }
+
+  & > * {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}

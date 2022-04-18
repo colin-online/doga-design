@@ -17,7 +17,7 @@ type TransitionProps = CSSTransitionProps & {
 };
 
 /* Transition函数组件 */
-export const Transition: FC<TransitionProps> = (props) => {
+export const Transition: FC<TransitionProps> = props => {
   const { children, classNames, animation, wrapper, ...restProps } = props;
   return (
     <CSSTransition classNames={classNames ? classNames : animation} {...restProps}>

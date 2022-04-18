@@ -34,7 +34,7 @@ export const MenuContext = createContext<IMenuContext>({
 });
 
 /* Menu函数组件 */
-export const Menu: FC<MenuProps> = (props) => {
+export const Menu: FC<MenuProps> = props => {
   const { defaultIndex, mode, className, style, onSelect, defaultOpenSubMenus, children } = props || {};
   const [currentActive, setCurrentActive] = useState(defaultIndex);
 
@@ -52,7 +52,7 @@ export const Menu: FC<MenuProps> = (props) => {
         onSelect(index);
       }
     },
-    [onSelect],
+    [onSelect]
   );
 
   /* 传递上下文 */
@@ -79,7 +79,7 @@ export const Menu: FC<MenuProps> = (props) => {
   };
 
   return (
-    <ul className={classes} style={style} data-testid='test-menu'>
+    <ul className={classes} style={style}>
       <MenuContext.Provider value={passedContext}>{renderChildren()}</MenuContext.Provider>
     </ul>
   );
