@@ -49,7 +49,7 @@ export const Json: FC<JsonProps> = props => {
 
   /* 执行选择选项操作 */
   const handleSelectClick = useCallback(
-    data => {
+    (data: any) => {
       if (max && selectList?.length + 1 > max) return;
       const result = selectList.some((children: selectProps) => isEqual(children, data));
       if (!result) {
@@ -84,8 +84,9 @@ export const Json: FC<JsonProps> = props => {
 
   /* 初始化数据 */
   useEffect(() => {
-    if (selectedList.length > 0) setSelectList(selectedList);
-  }, [selectedList]);
+    setSelectList(selectedList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={classes} ref={componentRef}>

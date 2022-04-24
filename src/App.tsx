@@ -15,12 +15,12 @@ import './styles/index.scss';
 export const App: FC<any> = () => {
   const [count, setCount] = useState(0);
 
-  const handleChange = useCallback(val => {
+  const handleChange = useCallback((val: React.SetStateAction<number>) => {
     console.log(val);
     setCount(val);
   }, []);
 
-  const handleColorChange = useCallback((colorList, colorIndex) => {
+  const handleColorChange = useCallback((colorList: any, colorIndex: any) => {
     console.log(colorList, colorIndex);
   }, []);
   const handleFetch = (query: string) => {
@@ -106,6 +106,7 @@ export const App: FC<any> = () => {
 
   return (
     <div style={{ margin: '30px' }}>
+      {count > 5 && <Json selectedList={[]} dataSource={dataSource} onChange={val => console.log(val)} />}
       <Json selectedList={[{ name: 'biPv', namespace: [], type: 'string', value: '' }]} dataSource={dataSource} onChange={val => console.log(val)} />
       <br />
       <br />
