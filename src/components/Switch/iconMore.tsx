@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-04-18 15:54:45
- * @description:切换选择器-多选项函数组件
+ * @description: 图标切换选择器-多选项函数组件
  */
 import React, { FC, ReactElement, useState, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
@@ -14,8 +14,8 @@ export type OptionsProps = {
   value: string;
 };
 
-/* 切换选择器属性接口定义 */
-export interface MoreProps {
+/* 图标切换选择器属性接口定义 */
+export interface IconMoreProps {
   /* 当前选中选项 */
   checked: string;
   /* 选项集合 */
@@ -24,14 +24,14 @@ export interface MoreProps {
   onChange?: (value: any) => void;
 }
 
-export const More: FC<MoreProps> = props => {
+export const IconMore: FC<IconMoreProps> = props => {
   const { checked, options, onChange } = props || {};
   /* 当前选中索引 */
   const [currentIndex, setCurrentIndex] = useState(0);
   /* 组件样式 */
-  const classes = classNames('doga-switch', 'selected', {});
+  const classes = classNames('doga-switch-icon', 'selected', {});
 
-  /* 执行切换选中选项操作 */
+  /* 执行图标切换选中选项操作 */
   const handleSwitchIndexChange = useCallback(() => {
     let index = currentIndex;
     /* 切换选中索引 */
@@ -57,4 +57,4 @@ export const More: FC<MoreProps> = props => {
   );
 };
 
-export default More;
+export default IconMore;

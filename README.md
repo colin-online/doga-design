@@ -207,7 +207,17 @@ import { Switch } from 'doga-design';
 
 const App = () => (
   <>
-    <Switch checked={false} icon={<i className='iconfont icon-switch' />} />
+    <Switch checked={false} onChange={val => console.log(val)} />
+    <Switch.Icon checked={false} icon={<i className='iconfont icon-color' />} />
+    <Switch.IconMore
+      checked='center'
+      options={[
+        { icon: <i className='iconfont icon-color' />, value: 'left' },
+        { icon: <i className='iconfont icon-cloud-upload' />, value: 'center' },
+        { icon: <i className='iconfont icon-upload' />, value: 'right' },
+      ]}
+      onChange={val => console.log(val)}
+    />
   </>
 );
 ```
@@ -225,14 +235,16 @@ import { Select } from 'doga-design';
 
 const App = () => (
   <>
-    <Select checked={false} appendIcon={<i className='iconfont icon-switch' />} options={
-        [
-          { value: '"SimSun","STSong"', label: '宋体' },
-          { value: '"SimHei","STHeiti"', label: '黑体' },
-          { value: '"KaiTi","STKaiti"', label: '楷体' },
-          { value: '"FangSong","STFangsong"', label: '仿宋' }
-        ]
-      } />
+    <Select
+      checked={false}
+      appendIcon={<i className='iconfont icon-switch' />}
+      options={[
+        { index: 0, value: '"SimSun","STSong"', label: '宋体宋体宋体宋体', icon: <i className='iconfont icon-loading' /> },
+        { index: 1, value: '"SimHei","STHeiti"', label: '黑体', icon: <i className='iconfont icon-loading' /> },
+        { index: 2, value: '"KaiTi","STKaiti"', label: '楷体楷体', icon: <i className='iconfont icon-loading' /> },
+        { index: 3, value: '"FangSong","STFangsong"', label: '仿宋', icon: <i className='iconfont icon-loading' /> },
+      ]}
+    />
   </>
 );
 ```
@@ -242,6 +254,31 @@ const App = () => (
 | checked    | 是否选中                                                   |       boolean                                                               |    -    |
 | appendIcon    | 后置图标|                                                                            string                                                                             |    -    |
 | options | 选项列表                                               |                                                                           arrary                                                                            |    -    |
+
+
+#### Json 数据源
+
+
+```jsx
+import { Select } from 'doga-design';
+
+const dataSource = {
+  name: 'colin',
+  age: 18,
+}
+
+const App = () => (
+  <>
+    <Json selectedList={[{ name: 'biPv', namespace: [], type: 'string', value: '' }]} dataSource={dataSource} onChange={val => console.log(val)} />
+  </>
+);
+```
+
+| 属性    | 说明                                                           |                                                                             类型                                                                              | 默认值  |
+| :------ | :------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: |
+| selectedList    | 默认选中列表                                                   |       array                                                               |    -    |
+| dataSource    | 数据源|                                                                            object                                                                             |    -    |
+
 
 #### Popup 弹出层
 

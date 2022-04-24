@@ -5,13 +5,16 @@
  */
 import { FC } from 'react';
 import Switch, { SwitchProps } from './switch';
-import More, { MoreProps } from './more';
+import Icon, { IconProps } from './icon';
+import IconMore, { IconMoreProps } from './iconMore';
 
 export type SwitchComponent = FC<SwitchProps> & {
-  More: FC<MoreProps>;
+  Icon: FC<IconProps>;
+  IconMore: FC<IconMoreProps>;
 };
 
 const TransSwitch = Switch as SwitchComponent;
-TransSwitch.More = More;
+TransSwitch.Icon = Icon;
+TransSwitch.IconMore = IconMore;
 
 export default TransSwitch;

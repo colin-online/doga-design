@@ -1,0 +1,212 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-04-23 20:43:11
+ * @description: 数据组件样式
+ */
+.doga-json {
+  position: relative;
+  background-color: #fff;
+  box-sizing: border-box;
+
+  /* 滑过样式 */
+  &:hover {
+    .doga-json-select {
+      border: $input-border-width solid $gray-400;
+    }
+  }
+
+  .doga-json-select {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 30px 5px 0;
+    height: 40px;
+    border: $input-border-width solid $gray-300;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+
+
+    .doga-json-select-list {
+      display: flex;
+      overflow-x: auto;
+      padding: 0 16px 20px 16px;
+
+      .doga-json-select-children {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding-left: 10px;
+        height: 28px;
+        line-height: 28px;
+        color: #333;
+        border: $input-border-width solid $gray-200;
+        background-color: $gray-100;
+        border-radius: 3px;
+        margin-right: 10px;
+        transition: all 0.1s;
+  
+        &:hover {
+          border: $input-border-width solid $gray-300;
+          transition: all 0.1s;
+        }
+  
+        span {
+          font-size: 14px;
+        }
+  
+        .iconfont {
+          font-size: 14px;
+          height: 100%;
+          color: $gray-500;
+          padding: 0 10px;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            color: $gray-600;
+            transition: all 0.2s;
+          }
+        }
+      }
+    }
+
+    & > .iconfont {
+      position: absolute;
+      top: 0;
+      right: 0;
+      line-height: 40px;
+      padding: 0 10px;
+      background-color: #fff;
+      box-shadow: 0 5px 3px rgba(0,0,0,0.1);
+      color: $gray-600;
+    }
+  }
+
+  .doga-json-container {
+    overflow: hidden;
+    max-height: 300px;
+
+    .doga-json-view {
+      position: absolute;
+      top: 45px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 10px 10px 10px 0;
+      min-height: 40px;
+      max-height: 300px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border-radius: 3px;
+      background-color: #fff;
+      border: 1px solid #e0e5ea;
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
+  
+      .doga-json-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: $gray-500;
+      }
+    }
+  }
+}
+
+/* 初始化JSON-VIEW样式 */
+.pretty-json-container {
+  & > .object-content {
+    & > .object-key-val {
+      & > span {
+        display: none;
+      }
+      .object-content{
+        margin-left: -1px !important;
+      }
+    }
+  }
+}
+
+.object-key-val {
+  span {
+    min-height: 24px;
+    line-height: 24px;
+  }
+}
+
+.icon-container {
+  pointer-events: none;
+  position: relative;
+  top: 6px;
+
+  .expanded-icon {
+    svg {
+      color: $gray-500 !important;
+    }
+  }
+
+  .collapsed-icon {
+    svg {
+      color: $gray-600 !important;
+    }
+  }
+}
+.variable-row {
+  display: flex;
+  padding-right: 0 !important;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 0 0 20px !important;
+  margin: 0 0 5px 20px !important;
+  background-color: #f9f9f9;
+
+  &:hover {
+    background-color: #f1f1f1;
+    & > span {
+      .object-key {
+        color: $gray-800 !important;
+        transition: all 0.2s;
+      }
+    }
+  }
+
+  & > span {
+    display: flex;
+
+    .object-key {
+      color: $gray-600 !important;
+      transition: all 0.2s;
+    }
+
+    & > span:last-child {
+      display: none !important;
+    }
+
+    & > div {
+      display: none !important;
+    }
+  }
+}
+.string-value,
+.variable-value {
+  opacity: 0;
+  height: 24px;
+  position: relative;
+  display: contents;
+  word-wrap: break-word;
+  word-break: break-all;
+  border-radius: 3px;
+  padding: 0 !important;
+  cursor: pointer !important;
+
+  &::after {
+    content: "";
+    width: 1000px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: -200px;
+  }
+}

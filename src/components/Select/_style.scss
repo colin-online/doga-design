@@ -8,12 +8,13 @@
   position: relative;
 
   .doga-select-input {
-    display: flex;
-    justify-content: space-between;
     font-size: 14px;
     width: 100%;
     height: 40px;
     line-height: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     position: relative;
     outline: 0;
     padding: 0 16px;
@@ -27,6 +28,14 @@
     &:hover {
       border: $input-border-width solid $gray-400;
     }
+
+    /* 图标 */
+    & > * {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      color: $gray-600;
+    }
   }
 
   .doga-select-list {
@@ -37,24 +46,19 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    height: 0;
+    min-height: 40px;
+    max-height: 200px;
     overflow-y: auto;
     border-radius: 3px;
     background-color: #fff;
     border: 1px solid #e0e5ea;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
-    opacity: 0;
-
-    &.active {
-      height: 200px;
-      opacity: 1;
-    }
 
     .doga-select-list-item {
       width: 100%;
       height: 40px;
       line-height: 40px;
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
       cursor: pointer;
 

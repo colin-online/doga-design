@@ -32,3 +32,5 @@ export { default as ColorPicker } from './components/ColorPicker';
 export { default as Switch } from './components/Switch';
 /* 下拉选择器组件 */
 export { default as Select } from './components/Select';
+/* 数据组件 */
+export { default as Json } from './components/Json';
