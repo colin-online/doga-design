@@ -16,7 +16,7 @@
     height: 4px;
     border-radius: 3px;
     background-color: transparent;
-    transition: background .15;
+    transition: all 0.15s;
     cursor: pointer;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;

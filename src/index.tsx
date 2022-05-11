@@ -1,18 +1,23 @@
 /*
  * @Author: 东林
- * @Date: 2022-03-14 23:18:45
+ * @Date: 2022-04-25 17:46:49
  * @description: doga design组件库入口文件
  */
+/* 调试使用 */
 // import React from 'react';
+// import ReactDOM from 'react-dom/client';
 // import App from './App';
-// import ReactDOM from 'react-dom';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
+// const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+// root.render(
+//   <React.StrictMode>
+//     <App />,
+//   </React.StrictMode>
+// );
 
 /* 自动选择组件 */
 export { default as AutoComplete } from './components/AutoComplete';
 /* 按钮组件 */
-export { default as Button } from './components/Botton';
+export { default as Button } from './components/Button';
 /* 滑动条组件 */
 export { default as Image } from './components/Image';
 /* 文本框组件 */
@@ -39,3 +44,7 @@ export { default as Switch } from './components/Switch';
 export { default as Select } from './components/Select';
 /* 数据组件 */
 export { default as Json } from './components/Json';
+/* 单选框组件 */
+export { default as Radio } from './components/Radio';
+/* 空状态组件 */
+export { default as Empty } from './components/Empty';

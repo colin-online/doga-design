@@ -4,13 +4,14 @@
  * @description: 菜单子项函数组件
  */
 import classNames from 'classnames';
-import React, { CSSProperties, FC, useCallback, useContext } from 'react';
+import React, { FC, ReactNode, CSSProperties, useCallback, useContext } from 'react';
 import { MenuContext } from './menu';
 
 /* Menu子项属性接口定义 */
 export interface MenuItemProps {
   index?: string;
   disabled?: boolean;
+  children?: ReactNode;
   className?: string;
   style?: CSSProperties;
 }

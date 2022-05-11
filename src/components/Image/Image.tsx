@@ -5,7 +5,7 @@
  */
 import classNames from 'classnames';
 import React, { createRef, FC, useCallback, useRef, useState } from 'react';
-import Botton from '../Botton';
+import Button from '../Button';
 import CloudUpload from '../CloudUpload';
 import Popup from '../Popup';
 import Cropper, { CloudProps } from './Cropper';
@@ -53,25 +53,24 @@ export const Image: FC<ImageProps> = props => {
       if (data) {
         setPicture(data);
         setCropperPicture(data);
-        if (onChange) {
-          onChange(data);
-        }
+        if (onChange) onChange(data);
       }
     },
     [onChange]
   );
 
   /* 执行显示裁剪面板操作 */
-  const handleCropperChange = useCallback(() => setIsShowCropper(!isShowCropper), [isShowCropper]);
+  const handleCropperChange = useCallback(() => {
+    if (!picture) return;
+    setIsShowCropper(!isShowCropper);
+  }, [picture, isShowCropper]);
 
   /* 执行裁剪成功操作 */
   const handleCropperClick = useCallback(async () => {
     if (childrenRef.current) {
       const cropperURL = await childrenRef.current.handleCropperSuccessClick();
       setCropperPicture(cropperURL);
-      if (onChange) {
-        onChange(cropperURL);
-      }
+      if (onChange) onChange(cropperURL);
       setIsShowCropper(false);
     }
   }, [childrenRef, onChange]);
@@ -79,18 +78,14 @@ export const Image: FC<ImageProps> = props => {
   /* 执行还原照片操作 */
   const handleRestoreClick = useCallback(() => {
     setCropperPicture(picture);
-    if (onChange) {
-      onChange(picture);
-    }
+    if (onChange) onChange(picture);
   }, [picture, onChange]);
 
   /* 执行照片删除操作 */
   const handleRemoveClick = useCallback(() => {
     setPicture('');
     setCropperPicture('');
-    if (onChange) {
-      onChange('');
-    }
+    if (onChange) onChange('');
   }, [onChange]);
 
   return (
@@ -104,7 +99,7 @@ export const Image: FC<ImageProps> = props => {
       {/* 更换功能 */}
       {isReplace && cloud && (
         <CloudUpload cloud={cloud} onChange={data => handleUploadSuccessClick(data)} accept="image/*">
-          <Botton block>{picture ? '更换' : '上传'}图片</Botton>
+          <Button block>{picture ? '更换' : '上传'}图片</Button>
         </CloudUpload>
       )}
       {/* 功能组 */}
@@ -115,35 +110,35 @@ export const Image: FC<ImageProps> = props => {
             <Popup title="裁剪图片" maskClosable onClose={handleCropperChange} visible={isShowCropper} width={520}>
               <Cropper src={picture} cloud={cloud} childrenRef={childrenRef} />
               <div className="doga-cropper-handle">
-                <Botton btnType="text" onClick={handleCropperChange}>
+                <Button btnType="text" onClick={handleCropperChange}>
                   取消
-                </Botton>
-                <Botton onClick={handleCropperClick}>保存</Botton>
+                </Button>
+                <Button onClick={handleCropperClick}>保存</Button>
               </div>
             </Popup>
-            <Botton block onClick={handleCropperChange}>
+            <Button block onClick={handleCropperChange}>
               裁剪
-            </Botton>
+            </Button>
           </>
         )}
         {isCropper && isTint && <span className="doga-cropper-space" />}
         {/* 调色功能 */}
-        {isTint && <Botton block>调色</Botton>}
+        {isTint && <Button block>调色</Button>}
       </div>
       {/* 功能组 */}
       <div className="doga-image-handle">
         {/* 还原功能 */}
         {isRestore && (
-          <Botton block onClick={() => handleRestoreClick()}>
+          <Button block onClick={() => handleRestoreClick()}>
             还原
-          </Botton>
+          </Button>
         )}
         {isRestore && isRemove && <span className="doga-cropper-space" />}
         {/* 删除功能 */}
         {isRemove && (
-          <Botton block onClick={() => handleRemoveClick()}>
+          <Button block onClick={() => handleRemoveClick()}>
             删除
-          </Botton>
+          </Button>
         )}
       </div>
     </div>

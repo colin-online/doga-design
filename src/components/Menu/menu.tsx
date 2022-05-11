@@ -4,7 +4,7 @@
  * @description: 菜单函数组件
  */
 import classNames from 'classnames';
-import React, { Children, cloneElement, createContext, CSSProperties, FC, FunctionComponentElement, useCallback, useState } from 'react';
+import React, { FC, ReactNode, Children, cloneElement, createContext, CSSProperties, FunctionComponentElement, useCallback, useState } from 'react';
 import { MenuItemProps } from './menuItem';
 
 type MenuMode = 'horizontal' | 'vertical'; /* Menu模式类型定义 */
@@ -14,6 +14,7 @@ type SelectCallback = (selectIndex: string) => void; /* 选中回调类型定义
 export interface MenuProps {
   defaultIndex?: string;
   mode?: MenuMode;
+  children?: ReactNode;
   className?: string;
   style?: CSSProperties;
   onSelect?: SelectCallback;

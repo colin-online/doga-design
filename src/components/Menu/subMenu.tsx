@@ -4,7 +4,7 @@
  * @description: 子菜单函数组件
  */
 import classNames from 'classnames';
-import React, { Children, cloneElement, FC, FunctionComponentElement, MouseEvent, useCallback, useContext, useState } from 'react';
+import React, { FC, ReactNode, Children, cloneElement, FunctionComponentElement, MouseEvent, useCallback, useContext, useState } from 'react';
 import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
@@ -13,6 +13,7 @@ import { MenuItemProps } from './menuItem';
 export interface SubMenuProps {
   index?: string;
   title?: string;
+  children?: ReactNode;
   className?: string;
 }
 

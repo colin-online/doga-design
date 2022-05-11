@@ -4,10 +4,11 @@
  * @description: 拖拽函数组件
  */
 import classNames from 'classnames';
-import React, { DragEvent, FC, useState } from 'react';
+import React, { FC, ReactNode, DragEvent, useState } from 'react';
 
 /* 拖拽属性接口定义 */
 interface DraggerProps {
+  children?: ReactNode;
   onFile: (files: FileList) => void;
 }
 

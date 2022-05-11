@@ -3,7 +3,7 @@
  * @Date: 2022-03-14 18:34:02
  * @description: 云上传函数组件
  */
-import React, { ChangeEvent, FC, useCallback, useRef } from 'react';
+import React, { FC, ReactNode, ChangeEvent, useCallback, useRef } from 'react';
 import { cloudUploadFile } from '../../utils';
 import { CloudProps } from '../Image/Cropper';
 import Dragger from './dragger';
@@ -21,6 +21,8 @@ export interface CloudUploadProps {
   multiple?: boolean;
   /* 拖拽 */
   drag?: boolean;
+  /* 内容 */
+  children?: ReactNode;
   /* 前置校验 */
   beforeUpload?: (file: File) => boolean | Promise<File>;
   /* 上传进度 */

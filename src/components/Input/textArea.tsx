@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-15 22:24:58
- * @description: 文本域函数组件
+ * @description: 文本域组件
  */
 import classNames from 'classnames';
 import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
@@ -26,7 +26,6 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLElement> {
   onchange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-/* TextArea函数组件 */
 export const TextArea: FC<TextAreaProps> = props => {
   const { disabled, autosize, showCount, maxLength, placeholder, cols, rows, className, style, ...restProps } = props;
   const classes = classNames('doga-textarea', className, {});

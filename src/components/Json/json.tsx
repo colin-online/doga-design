@@ -67,7 +67,7 @@ export const Json: FC<JsonProps> = props => {
 
   /* 执行删除对应选项操作 */
   const handleDeleteClick = useCallback(
-    selectIndex => {
+    (selectIndex: any) => {
       setSelectList([...selectList.filter((_item: any, index: any) => index !== selectIndex)]);
       if (onChange) onChange([...selectList.filter((_item: any, index: any) => index !== selectIndex)]);
     },

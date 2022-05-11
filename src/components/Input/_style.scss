@@ -3,6 +3,7 @@
  * @Date: 2022-03-14 02:34:19
  * @description: 输入框组件样式
  */
+
 /* 输入框 */
 .doga-input {
   display: flex;
@@ -10,22 +11,24 @@
   height: 100%;
   position: relative;
   outline: 0;
-  border: $input-border-width solid $gray-300;
+  border: $border-width solid $gray-300;
   border-radius: 4px;
   background-color: #fff;
   box-sizing: border-box;
 
+  /* 前置图标内边距 */
   &.is-prepend-icon > input {
     padding-left: 50px;
   }
 
+  /* 后置图标内边距 */
   &.is-append-icon > input {
     padding-right: 50px;
   }
 
-  /* 滑过样式 */
+  /* 鼠标滑过样式 */
   &:hover {
-    border: $input-border-width solid $gray-400;
+    border: $border-width solid $gray-400;
   }
 
   /* 图标公共样式 */
@@ -35,17 +38,17 @@
     height: 100%;
     width: 50px;
     justify-content: center;
-    color: $input-color;
+    color: $gray-700;
     top: 0;
     display: flex;
     align-items: center;
     cursor: pointer;
     i {
-      color: $input-placeholder-color;
+      color: $gray-500;
     }
     &:hover {
       i {
-        color: lighten($input-placeholder-color, 10%);
+        color: lighten($gray-500, 10%);
       }
     }
   }
@@ -79,19 +82,19 @@
     &:focus {
       cursor: text;
       outline: 0;
-      border-color: $input-focus-border-color;
+      border-color: $gray-500;
     }
 
     &::placeholder {
-      color: $input-placeholder-color;
+      color: $gray-500;
       opacity: 1;
     }
 
     &:disabled,
     &[readonly] {
       color: $gray-500;
-      background-color: $input-disabled-bg;
-      border-color: $input-disabled-border-color;
+      background-color: $gray-100;
+      border-color: null;
       opacity: 1;
       cursor: not-allowed;
     }
@@ -107,26 +110,21 @@
     font-size: $input-font-size;
     font-weight: $font-weight-normal;
     line-height: $input-line-height;
-    color: $input-group-addon-color;
+    color: $gray-700;
     text-align: center;
     white-space: nowrap;
-    background-color: $input-group-addon-bg;
-    border-radius: $input-border-radius;
+    background-color: $gray-100;
+    border-radius: $border-radius;
   }
 
   /* 前缀 */
   .doga-input-group-prepend {
-    border-right: $input-border-width solid $input-group-addon-border-color;
+    border-right: $border-width solid $gray-200;
   }
 
   /* 后缀 */
   .doga-input-group-append {
-    border-left: $input-border-width solid $input-group-addon-border-color;
-  }
-
-  .doga-input-group-append + .btn {
-    padding: 0;
-    border: 0;
+    border-left: $border-width solid $gray-200;
   }
 
   .input-group > .doga-input-group-prepend,
@@ -161,7 +159,7 @@
   height: 100%;
   position: relative;
   outline: 0;
-  border: $input-border-width solid $gray-300;
+  border: $border-width solid $gray-300;
   border-radius: 4px;
   background-color: #fff;
   box-sizing: border-box;
@@ -169,7 +167,7 @@
 
   /* 滑过样式 */
   &:hover {
-    border: $input-border-width solid $gray-400;
+    border: $border-width solid $gray-400;
   }
 
   /* 文本域内容 */
@@ -190,19 +188,19 @@
     &:focus {
       cursor: text;
       outline: 0;
-      border-color: $input-focus-border-color;
+      border-color: $gray-500;
     }
 
     &::placeholder {
-      color: $input-placeholder-color;
+      color: $gray-500;
       opacity: 1;
     }
 
     &:disabled,
     &[readonly] {
       color: $gray-500;
-      background-color: $input-disabled-bg;
-      border-color: $input-disabled-border-color;
+      background-color: $gray-100;
+      border-color: null;
       opacity: 1;
       cursor: not-allowed;
     }
@@ -225,14 +223,14 @@
   height: 100%;
   position: relative;
   outline: 0;
-  border: $input-border-width solid $gray-300;
+  border: $border-width solid $gray-300;
   border-radius: 4px;
   background-color: #fff;
   box-sizing: border-box;
 
   /* 滑过样式 */
   &:hover {
-    border: $input-border-width solid $gray-400;
+    border: $border-width solid $gray-400;
   }
 
   /* 数字框内容 */
@@ -253,19 +251,19 @@
     &:focus {
       cursor: text;
       outline: 0;
-      border-color: $input-focus-border-color;
+      border-color: $gray-500;
     }
 
     &::placeholder {
-      color: $input-placeholder-color;
+      color: $gray-500;
       opacity: 1;
     }
 
     &:disabled,
     &[readonly] {
       color: $gray-500;
-      background-color: $input-disabled-bg;
-      border-color: $input-disabled-border-color;
+      background-color: $gray-100;
+      border-color: null;
       opacity: 1;
       cursor: not-allowed;
     }
@@ -294,7 +292,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-left: 1px solid #e0e5ea;
+      border-left: $border-width solid #e0e5ea;
       color: #444950;
       cursor: pointer;
       color: $black;
@@ -302,7 +300,7 @@
     /* 增加 */
     .doga-number-step-increase {
       top: 0;
-      border-bottom: 1px solid #e0e5ea;
+      border-bottom: $border-width solid #e0e5ea;
     }
 
     /* 减少 */

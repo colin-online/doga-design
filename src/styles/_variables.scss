@@ -7,15 +7,27 @@
 $brand: #fa2c19 !default; // 品牌色
 $brand-lightest: #ff404f !default; // 品牌渐变浅色
 
-/* 主题色 */
+/* 主题色-字体颜色 */
 $primary: #3478f7 !default; // 默认
-$secondary: #5a607d !default; // 次要
-$success: #5ac26d !default; // 成功
-$info: #50b4f7 !default; // 提示
+$success: #04ce89 !default; // 成功
+$info: #50b4f7 !default; // 信息
+$tips: #ff8f40 !default; // 提示
 $warning: #f8d148 !default; // 警告
-$danger: #e0404a !default; // 危险
+$danger: #ff5975 !default; // 危险
+$secondary: #5a607d !default; // 次要
 $light: #e0e1e7 !default; // 浅色
-$dark: #3f4357 !default; // 深色
+$dark: #3f4665 !default; // 深色
+
+/* 主题色-背景色 */
+$primary-background-color: rgba(52, 120, 247, 0.1) !default; // 默认
+$success-background-color: rgba(71, 235, 180, 0.1) !default; // 成功
+$info-background-color: rgba(80, 180, 247, 0.1) !default; // 信息
+$tips-background-color: rgba(255, 143, 64, 0.1) !default; // 提示
+$warning-background-color: rgba(248, 209, 72, 0.1) !default; // 警告
+$danger-background-color: rgba(255, 89, 117, 0.1) !default; // 危险
+$secondary-background-color: rgba(90, 96, 125, 0.1) !default; // 次要
+$light-background-color: rgba(224, 225, 231, 0.1) !default; // 浅色
+$dark-background-color: rgba(63, 70, 101, 0.1) !default; // 深色
 
 $theme-colors: 
 (
@@ -67,7 +79,7 @@ $black: #000000 !default; // 黑色
  $font-family-base:           $font-family-sans-serif !default; // 默认无衬线字体
 
 /* 字体大小 */
-$font-size-base:              1rem !default; // 采用浏览器默认设置，通常为 `16px`
+$font-size-base:              14px !default; // 采用浏览器默认设置，通常为 `16px`
 $font-size-lg:                $font-size-base * 1.25 !default;
 $font-size-sm:                $font-size-base * .875 !default;
 $font-size-root:              null !default;

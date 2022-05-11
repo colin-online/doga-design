@@ -14,6 +14,9 @@ export type ColorProps = {
   rgba: string;
 };
 
+/* 方向属性类型定义 */
+export type DirectionProps = 'bottom' | 'right' | 'left';
+
 /* 颜色选择器属性接口定义 */
 export interface ColorPickerProps {
   /* 标题 */
@@ -22,6 +25,8 @@ export interface ColorPickerProps {
   defaultColor?: string;
   /* 颜色列表 */
   defaultColorList?: Array<ColorProps>;
+  /* 方向 */
+  direction?: DirectionProps;
   /* 禁用透明度 */
   disableAlpha?: boolean;
   /* 更新操作 */
@@ -29,7 +34,7 @@ export interface ColorPickerProps {
 }
 
 export const ColorPicker: FC<ColorPickerProps> = props => {
-  const { title = '颜色', defaultColor = '#000000', defaultColorList = [], disableAlpha = false, onChange } = props || {};
+  const { title, defaultColor = '#000000', defaultColorList = [], direction, disableAlpha, onChange } = props || {};
   /* 组件元素 */
   const componentRef = useRef<HTMLDivElement>(null);
   /* 当前选中颜色选项索引 */
@@ -40,8 +45,6 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
   const [colorIndex, setColorIndex] = useState(0);
   /* 默认颜色 */
   const [color, setColor] = useState('');
-  /* 组件样式 */
-  const classes = classNames('doga-color-picker', {});
 
   /* 执行设置默认颜色操作 */
   const handleDefaultColorChange = useCallback(() => {
@@ -64,11 +67,14 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
     }
     setColor('');
     setIsActive(false);
+    if (onChange) {
+      onChange({ colorList: [{ hex: '#ffffff00', rgba: 'rgba(255,255,255,0)' }], colorIndex: 0 });
+    }
   }, [onChange, colorIndex, colorList, defaultColorList]);
 
   /* 执行选择颜色选项索引操作 */
   const handleColorIndexChange = useCallback(
-    index => {
+    (index: React.SetStateAction<number>) => {
       if (index === colorIndex && isActive) setIsActive(false);
       else {
         setIsActive(true);
@@ -83,7 +89,7 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
 
   /* 执行设置颜色操作 */
   const handleSetColorChange = useCallback(
-    color => {
+    (color: any) => {
       const { rgb, hex } = color || {};
       const { r, g, b, a } = rgb || {};
       /* 是否存在颜色数组 */
@@ -123,6 +129,9 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
     setIsActive(false);
   });
 
+  /* 组件样式 */
+  const classes = classNames('doga-color-picker', {});
+
   return (
     <div className={classes} ref={componentRef}>
       <div className="doga-color-picker-color-title">{title}</div>
@@ -130,6 +139,7 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
         {/* 默认颜色 */}
         <div className={classNames('color', 'default')} onClick={() => handleDefaultColorChange()}>
           <div style={{ backgroundColor: color }} />
+          <small style={{ backgroundColor: color, opacity: 0.3 }}></small>
         </div>
         {/* 透明颜色 */}
         <div className={classNames('color', 'default', 'transparent')} onClick={() => handleResetColorChange()} />
@@ -139,17 +149,27 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
             return (
               <div key={index} className="color" onClick={() => handleColorIndexChange(index)}>
                 <div style={{ backgroundColor: color?.rgba }} />
+                <small style={{ backgroundColor: color?.hex, opacity: 0.3 }}></small>
               </div>
             );
           })}
       </div>
       {isActive && (
-        <div className="doga-color-picker-color-popup">
+        <div className={classNames('doga-color-picker-color-popup', direction)}>
           <ChromePicker disableAlpha={disableAlpha} color={colorList?.length ? colorList[colorIndex]?.rgba : color} onChange={handleSetColorChange} />
         </div>
       )}
     </div>
   );
+};
+
+/* ColorPicker默认属性设置 */
+ColorPicker.defaultProps = {
+  title: '颜色',
+  defaultColor: '#000000',
+  defaultColorList: [],
+  direction: 'bottom',
+  disableAlpha: false,
 };
 
 export default ColorPicker;

@@ -10,7 +10,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 /* 下拉选项属性类型定义 */
 export type optionProps = {
   /* 选项名称 */
-  label: string;
+  label?: string;
   /* 选项内容 */
   value?: string;
   /* 选项索引 */
@@ -24,7 +24,7 @@ export interface SelectProps {
   /* 当前选中数据 */
   checked: string | number;
   /* 选项数据源 */
-  options: Array<optionProps>;
+  options: Array<optionProps> | any;
   /* 前置图标 */
   prependIcon?: any;
   /* 后置图标 */
@@ -40,14 +40,14 @@ export const Select: FC<SelectProps> = props => {
   /* 是否显示选择器 */
   const [isActive, setIsActive] = useState(false);
   /* 当前选中索引 */
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<any>(0);
 
   /* 组件样式 */
   const classes = classNames('doga-select', {});
 
   /* 执行设置选中选项操作 */
   const handleSelectOptionClick = useCallback(
-    index => {
+    (index: any) => {
       setCurrentIndex(index);
       setIsActive(false);
       if (onChange) onChange(options[index].value || index);
@@ -60,7 +60,7 @@ export const Select: FC<SelectProps> = props => {
 
   /* 初始化选中选项索引 */
   useEffect(() => {
-    const index = options.findIndex((option, index) => option.value === checked || index === checked);
+    const index = options.findIndex((option: { value: string | number }, index: string | number) => option.value === checked || index === checked);
     setCurrentIndex(index);
   }, [checked, options]);
 
@@ -76,11 +76,11 @@ export const Select: FC<SelectProps> = props => {
       </div>
       {isActive && (
         <div className="doga-select-list">
-          {options.map(option => {
+          {options.map((option: any, key: React.Key | null | undefined) => {
             const { index, label, icon, value } = option || {};
             return (
               <div
-                key={index}
+                key={key}
                 className={classNames('doga-select-list-item', (value && value === options[currentIndex]?.value) || index === currentIndex ? 'doga-select-list-checked' : '')}
                 style={{ fontFamily: value }}
                 onClick={() => handleSelectOptionClick(index)}

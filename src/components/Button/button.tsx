@@ -1,13 +1,15 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-13 01:52:24
- * @description: 按钮函数组件
+ * @description: 按钮组件
  */
 import classNames from 'classnames';
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
-export type ButtonSize = 'lg' | 'sm'; // Button尺寸类型定义
-export type ButtonType = 'primary' | 'default' | 'success' | 'warning' | 'info' | 'danger' | 'text' | 'link'; // Button类别类型定义
+/* Button尺寸类型定义 */
+export type ButtonSize = 'lg' | 'sm';
+/* Button类别类型定义 */
+export type ButtonType = 'default' | 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'text' | 'link';
 
 /* Button属性接口定义 */
 interface BaseButtonProps {
@@ -29,19 +31,22 @@ interface BaseButtonProps {
 
 /* 原生Button属性接口类型 */
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+/* 锚点Button属性接口类型 */
 type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
-export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>; /* Button属性类型定义 */
+/* Button属性类型定义 */
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-/* Button函数组件 */
 export const Button: FC<ButtonProps> = props => {
   const { className, disabled, btnType, block, size, href, children, ...restProps } = props || {};
+
   /* 样式集合 */
-  const classes = classNames('doga-btn', className, {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
+  const classes = classNames('doga-button', className, {
+    [`button-${btnType}`]: btnType,
+    [`button-${size}`]: size,
     block: block,
     disabled: btnType === 'link' && disabled,
   });
+
   /* Link按钮 */
   if (btnType === 'link' && href) {
     return (

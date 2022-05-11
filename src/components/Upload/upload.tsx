@@ -4,7 +4,7 @@
  * @description: 上传函数组件
  */
 import axios from 'axios';
-import React, { ChangeEvent, FC, useCallback, useRef, useState } from 'react';
+import React, { FC, ChangeEvent, ReactNode, useCallback, useRef, useState } from 'react';
 import Dragger from './dragger';
 import UploadList from './uploadList';
 
@@ -44,6 +44,8 @@ export interface UploadProps {
   defaultFileList?: UploadFileProps[];
   /* 是否显示上传列表 */
   isShowList?: boolean;
+  /* 内容 */
+  children?: ReactNode;
   /* 前置校验 */
   beforeUpload?: (file: File) => boolean | Promise<File>;
   /* 上传进度 */

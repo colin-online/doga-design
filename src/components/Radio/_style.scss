@@ -1,0 +1,87 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-05-01 19:43:09
+ * @description: 单选框样式
+ */
+ .doga-radio {
+  /* 线框样式 */
+  &.doga-radio-solid {
+    display: flex;
+    justify-content: space-between;
+    background: #f6f7f9;
+    padding: 2px;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    .children {
+      min-width: 60px;
+      overflow: hidden;
+      flex: 1;
+      z-index: 2;
+      color: $gray-600;
+      font-size: 14px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 3px;
+      box-sizing: border-box;
+      padding: 0 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.1s;
+      
+      small {
+        display: block;
+        width: 100%;
+        line-height: 36px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+      }
+
+      &.selected {
+        font-weight: 600;
+        color: $gray-900;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 0.1s;
+      }
+    }
+  }
+
+  /* 文本样式 */
+  &.doga-radio-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .children {
+      min-width: 40px;
+      overflow: hidden;
+      flex: 1;
+      z-index: 2;
+      font-size: 14px;
+      color: $gray-600;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 3px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.1s;
+      
+      small {
+        display: block;
+        width: 100%;
+        line-height: 36px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+      }
+
+      &.selected {
+        font-weight: 600;
+        color: $gray-900;
+        transition: all 0.1s;
+      }
+    }
+  }
+ }

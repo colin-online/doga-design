@@ -1,0 +1,29 @@
+/*
+ * @Author: 东林
+ * @Date: 2022-05-01 23:05:48
+ * @description: 空状态组件
+ */
+.doga-empty {
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 0;
+
+  &.visible {
+    display: flex;
+  }
+
+  .doga-empty-icon {
+    margin-bottom: 10px;
+
+    & > * {
+      font-size: 34px;
+      color: $gray-600;
+    }
+  }
+  .doga-empty-desc {
+    font-size: 14px;
+    font-weight: normal;
+    color: $gray-400;
+  }
+}

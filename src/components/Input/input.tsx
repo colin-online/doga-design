@@ -1,7 +1,7 @@
 /*
  * @Author: 东林
  * @Date: 2022-03-14 02:26:56
- * @description: 输入框函数组件
+ * @description: 输入框组件
  */
 import classNames from 'classnames';
 import React, { ChangeEvent, FC, InputHTMLAttributes, ReactElement, useEffect, useRef } from 'react';
@@ -12,27 +12,27 @@ type InputSize = 'sm' | 'lg';
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
   /* 设置Input大小 */
   size?: InputSize;
+  /* 是否选中状态 */
+  focus?: boolean;
+  /* 是否禁用 */
+  disabled?: boolean;
   /* 前置图标 */
   prependIcon?: any;
   /* 后置图标 */
   appendIcon?: any;
-  /* 是否禁用 */
-  disabled?: boolean;
   /* 添加前缀 */
   prepend?: string | ReactElement;
   /* 添加后缀 */
   append?: string | ReactElement;
-  /* 是否选中状态 */
-  focus?: boolean;
   /* 更新事件 */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-/* Input函数组件 */
 export const Input: FC<InputProps> = props => {
   const { size, appendIcon, prependIcon, disabled, prepend, append, focus, style, ...restProps } = props || {};
-  /* 输入框 */
+  /* 输入框实例 */
   const inputRef = useRef<null | HTMLInputElement>(null);
+
   /* 样式集合 */
   const classes = classNames('doga-input', {
     [`input-size-${size}`]: size,
@@ -50,16 +50,15 @@ export const Input: FC<InputProps> = props => {
     }
     return value;
   };
+
   if ('value' in props) {
     delete restProps.defaultValue;
     restProps.value = fixControlledValue(props.value);
   }
 
-  /* 设置光标选中 */
+  /* 初始化光标选中设置 */
   useEffect(() => {
-    if (focus && inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (focus && inputRef.current) inputRef.current.focus();
   });
 
   return (
